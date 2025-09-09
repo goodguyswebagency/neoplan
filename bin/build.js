@@ -2,7 +2,7 @@
 /* global process */
 /* global console */
 import * as esbuild from "esbuild";
-import { readdirSync } from "fs";
+import { readdirSync, rmSync, mkdirSync, existsSync } from "fs";
 import { join, sep } from "path";
 
 // Config output
@@ -32,6 +32,19 @@ const LIVE_RELOAD = !PRODUCTION;
 const SERVE_PORT = 3000;
 const SERVE_ORIGIN = `http://localhost:${SERVE_PORT}`;
 
+// Ensure a clean build directory
+function cleanBuildDirectory() {
+   try {
+      if (existsSync(BUILD_DIRECTORY)) {
+         rmSync(BUILD_DIRECTORY, { recursive: true, force: true });
+      }
+   } catch {
+      // noop
+   } finally {
+      mkdirSync(BUILD_DIRECTORY, { recursive: true });
+   }
+}
+
 // Create context
 const context = await esbuild.context({
    bundle: true,
@@ -48,12 +61,16 @@ const context = await esbuild.context({
 
 // Build files in prod
 if (PRODUCTION) {
+   cleanBuildDirectory();
    await context.rebuild();
    context.dispose();
 }
 
 // Watch and serve files in dev
 else {
+   // Start from a clean slate and do an initial build
+   cleanBuildDirectory();
+   await context.rebuild();
    await context.watch();
    await context
       .serve({
