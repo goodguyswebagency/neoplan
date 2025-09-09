@@ -55,7 +55,6 @@
     "@finsweet/ts-utils": "^0.40.0",
     "gsap": "^3.13.0",
     "lenis": "^1.3.8",
-    "split-type": "^0.3.4",
     "swiper": "^11.2.10"
   },
   "engines": {
