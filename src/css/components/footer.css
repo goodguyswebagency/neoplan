@@ -1,0 +1,8 @@
+.footer_links_wrapper.is-open .footer_links_toggle-arrow {
+   transform: rotateZ(180deg);
+}
+
+.footer_links_wrapper.is-open .footer_links_height {
+   grid-template-rows: 1fr;
+   opacity: 1;
+}

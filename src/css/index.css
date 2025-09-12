@@ -1,0 +1,18 @@
+@import url("../css/components/navigation.css");
+@import url("../css/components/footer.css");
+
+/* Easing variables */
+:root {
+   --ease-main: cubic-bezier(0.625, 0.05, 0, 1);
+   --ease-main-reverse: cubic-bezier(0.55, 0.02, 0.1, 1);
+}
+
+body ::-webkit-scrollbar {
+   display: none;
+} /* Chrome, Safari, Opera */
+body {
+   -ms-overflow-style: none;
+} /* IE & Edge */
+html {
+   scrollbar-width: none;
+} /* Firefox */

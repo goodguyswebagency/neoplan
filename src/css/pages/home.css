@@ -1,0 +1,55 @@
+/* Buy lease dropdown */
+.buy-lease_dropdown_wrapper.is-open .buy-lease_dropdown_arrow {
+   transform: rotateZ(180deg);
+}
+
+.buy-lease_dropdown_wrapper.is-open .buy-lease_dropdown_height {
+   grid-template-rows: 1fr;
+   opacity: 1;
+}
+
+/* Services dropdown */
+.services_slide_tab_wrapper.is-open .services_slide_tab_toggle {
+   pointer-events: none;
+}
+
+.services_slide_tab_wrapper.is-open .services_slide_tab_toggle-text {
+   opacity: 0;
+}
+
+.services_slide_tab_wrapper.is-open
+   .services_slide_tab_toggle-text.is-dropdown {
+   opacity: 1;
+}
+
+.services_slide_tab_wrapper.is-open .services_slide_tab_button {
+   pointer-events: auto;
+   transform: rotateZ(315deg);
+}
+
+.services_slide_tab_wrapper.is-open .services_slide_tab_height {
+   grid-template-rows: 1fr;
+   opacity: 1;
+}
+
+/* Services card hover */
+.services_slide_tab_wrapper:not(.is-open):hover {
+   background-color: var(--swatch--black-04);
+}
+
+.services_slide_tab_wrapper:not(.is-open):hover .services_slide_tab_button {
+   transform: rotateZ(180deg);
+}
+
+/* Intro span animation */
+.intro_heading-span {
+   background-image: linear-gradient(
+      to right,
+      var(--swatch--black) 50%,
+      var(--swatch--black-60) 50%
+   );
+   background-size: 200% 100%;
+   background-position: 100% 0;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+}

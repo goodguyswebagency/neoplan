@@ -1,0 +1,135 @@
+import "../../css/pages/home.css";
+
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+import footerOverlap from "../animations/footerOverlap";
+import { heroCount, heroLoad } from "../animations/heroAnimations";
+import { introCard } from "../animations/introAnimations";
+import scrollFadeIn from "../animations/scrollFadeIn";
+import sliderIntoView from "../animations/sliderIntoView";
+import sliderIntoViewSmooth from "../animations/sliderIntoViewSmooth";
+import videoParallax from "../animations/videoParallax";
+import { categorySlider } from "../components/categorySlider";
+
+/*********************************/
+/* Helper for counting up from 0 */
+/*********************************/
+
+export function countUp(
+   element: HTMLElement,
+   targetValue: number,
+   duration: number = 1000,
+) {
+   let startTime: number | null = null;
+   const startValue: number = 0;
+
+   function updateCounter(timestamp: number) {
+      if (startTime === null) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      element.textContent = Math.floor(
+         startValue + progress * (targetValue - startValue),
+      ).toString();
+
+      if (progress < 1) {
+         requestAnimationFrame(updateCounter);
+      }
+   }
+
+   requestAnimationFrame(updateCounter);
+}
+
+/****************************/
+/* Bento counting animation */
+/****************************/
+
+function bentoCountGSAP() {
+   const selectors = [
+      ".bento_grid-1_number",
+      ".bento_grid-2_text.heading-style-h1",
+   ] as const;
+
+   selectors.forEach((sel) => {
+      const el = document.querySelector<HTMLElement>(sel);
+      if (!el) return;
+
+      // Store the final value from the DOM, then reset to 0 for the animation start
+      const targetValue = parseInt(el.textContent || "0", 10);
+      el.textContent = "0";
+
+      ScrollTrigger.create({
+         trigger: el,
+         start: "top 85%",
+         once: true,
+         onEnter: () => {
+            countUp(el, targetValue, 1000);
+         },
+      });
+   });
+}
+
+/****************************************************/
+/* Dropdown animation for the buy and lease section */
+/****************************************************/
+
+function buyLeaseDropdown() {
+   const dropdowns = document.querySelectorAll<HTMLElement>(
+      ".buy-lease_dropdown_wrapper",
+   );
+
+   dropdowns.forEach((dropdown) => {
+      const toggle = dropdown.querySelector(".buy-lease_dropdown_toggle");
+      if (!toggle) return;
+
+      toggle.addEventListener("click", () => {
+         dropdown.classList.toggle("is-open");
+      });
+   });
+}
+
+/*********************************/
+/* Services slider tab animation */
+/*********************************/
+
+function servicesOpen() {
+   const tabs = document.querySelectorAll<HTMLElement>(
+      ".services_slide_tab_wrapper",
+   );
+
+   tabs.forEach((tab) => {
+      const tabToggle = tab.querySelector(".services_slide_tab_toggle");
+      const tabButton = tab.querySelector(".services_slide_tab_button");
+
+      if (!tabToggle || !tabButton) return;
+
+      tabToggle.addEventListener("click", () => {
+         if (!tab.classList.contains("is-open")) {
+            tab.classList.add("is-open");
+         }
+      });
+
+      tabButton.addEventListener("click", () => {
+         if (tab.classList.contains("is-open")) {
+            tab.classList.remove("is-open");
+         }
+      });
+   });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+   heroLoad();
+   heroCount();
+   introCard();
+   videoParallax();
+   scrollFadeIn();
+   sliderIntoView();
+   categorySlider(".slider-category_slider");
+   bentoCountGSAP();
+   buyLeaseDropdown();
+   sliderIntoViewSmooth();
+   categorySlider(".services_slider");
+   servicesOpen();
+   footerOverlap();
+});

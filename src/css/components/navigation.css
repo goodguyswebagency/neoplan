@@ -1,0 +1,36 @@
+/* Scroll styling */
+.navigation[data-wf--global-navigation--variant="transparent"].is-scrolled {
+   background-color: var(--swatch--white);
+}
+
+.navigation[data-wf--global-navigation--variant="transparent"].is-scrolled
+   .navigation_brand-link {
+   color: var(--swatch--black);
+}
+
+.navigation[data-wf--global-navigation--variant="transparent"].is-scrolled
+   .navigation_nav_link {
+   color: var(--swatch--black);
+}
+
+.navigation[data-wf--global-navigation--variant="transparent"].is-scrolled
+   .navigation_nav_wrapper {
+   background-color: var(--swatch--black-04);
+}
+
+.navigation[data-wf--global-navigation--variant="transparent"].is-scrolled
+   .button {
+   color: var(--swatch--white);
+   background-color: var(--swatch--black);
+}
+
+/* Link hover */
+.navigation[data-wf--global-navigation--variant="transparent"]:not(.is-scrolled)
+   .navigation_nav_link-hover {
+   background-color: var(--swatch--black-80);
+}
+
+.navigation_nav_link:hover .navigation_nav_link-hover {
+   opacity: 1;
+   transform: scale(1);
+}

@@ -2,7 +2,7 @@
 /* global process */
 /* global console */
 import * as esbuild from "esbuild";
-import { readdirSync, rmSync, mkdirSync, existsSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, rmSync } from "fs";
 import { join, sep } from "path";
 
 // Config output

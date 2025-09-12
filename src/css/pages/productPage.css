@@ -1,0 +1,12 @@
+.swiper-wrapper.is-product-main {
+   transition-timing-function: cubic-bezier(0.625, 0.05, 0, 1);
+}
+
+.swiper-slide.is-product-thumbs.swiper-slide-thumb-active {
+   border: 1px solid var(--swatch--black);
+}
+
+.swiper-slide.is-product-thumbs.swiper-slide-thumb-active
+   .product_slide-thumbs_overlay {
+   opacity: 0;
+}
