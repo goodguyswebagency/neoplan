@@ -5,25 +5,50 @@ export function navigationScroll() {
       return;
    }
 
+   let infoBarClosing = false;
+
    if (navigation.getAttribute("data-info-bar") === "true") {
-      const infoBar = document.querySelector(".g_info-bar");
+      const infoBar = document.querySelector<HTMLElement>(".g_info-bar");
       if (!infoBar) {
          console.error("No info bar and data-info-bar is set to true");
          return;
       }
-      const infoClose = infoBar.querySelector(".info-bar_close");
+      const infoClose = infoBar.querySelector<HTMLElement>(".info-bar_close");
       if (!infoClose) return;
 
       // Close info bar on click
       infoClose.addEventListener("click", () => {
+         const duration = 800;
+         const easing = "cubic-bezier(0.625, 0.05, 0, 1)";
+
+         // Measure the current bottom of the info bar
+         const rect = infoBar.getBoundingClientRect();
+         const startTop = Math.max(rect.bottom, 0);
+
+         infoBarClosing = true;
+
+         // Fix the nav immediately and animate it up as the info bar collapses
+         navigation.classList.add("is-fixed");
+         navigation.style.top = `${startTop}px`;
+         navigation.style.transition = `top ${duration}ms ${easing}`;
+
+         // Start the info bar close and nav slide-up together
          infoBar.classList.add("is-closed");
+         requestAnimationFrame(() => {
+            navigation.style.top = "0px";
+         });
+
+         // Cleanup after animation
          setTimeout(() => {
-            navigation.classList.add("is-fixed");
-         }, 800);
+            navigation.style.transition = "";
+            navigation.style.top = "";
+            infoBarClosing = false;
+         }, duration + 50);
       });
 
       // Set navigation to fixed
       window.addEventListener("scroll", () => {
+         if (infoBarClosing) return;
          if (infoBar) {
             const infoBarRect = infoBar.getBoundingClientRect();
             if (infoBarRect.bottom <= 0) {

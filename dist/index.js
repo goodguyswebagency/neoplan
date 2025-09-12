@@ -7756,6 +7756,7 @@
       console.error("No navigation");
       return;
     }
+    let infoBarClosing = false;
     if (navigation.getAttribute("data-info-bar") === "true") {
       const infoBar = document.querySelector(".g_info-bar");
       if (!infoBar) {
@@ -7765,12 +7766,26 @@
       const infoClose = infoBar.querySelector(".info-bar_close");
       if (!infoClose) return;
       infoClose.addEventListener("click", () => {
+        const duration = 800;
+        const easing = "cubic-bezier(0.625, 0.05, 0, 1)";
+        const rect = infoBar.getBoundingClientRect();
+        const startTop = Math.max(rect.bottom, 0);
+        infoBarClosing = true;
+        navigation.classList.add("is-fixed");
+        navigation.style.top = `${startTop}px`;
+        navigation.style.transition = `top ${duration}ms ${easing}`;
         infoBar.classList.add("is-closed");
+        requestAnimationFrame(() => {
+          navigation.style.top = "0px";
+        });
         setTimeout(() => {
-          navigation.classList.add("is-fixed");
-        }, 800);
+          navigation.style.transition = "";
+          navigation.style.top = "";
+          infoBarClosing = false;
+        }, duration + 50);
       });
       window.addEventListener("scroll", () => {
+        if (infoBarClosing) return;
         if (infoBar) {
           const infoBarRect = infoBar.getBoundingClientRect();
           if (infoBarRect.bottom <= 0) {
