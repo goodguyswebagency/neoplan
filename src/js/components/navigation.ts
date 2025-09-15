@@ -1,7 +1,7 @@
 export function navigationScroll() {
    const navigation = document.querySelector<HTMLElement>(".navigation");
    if (!navigation) {
-      console.error("No navigation");
+      console.log("No navigation");
       return;
    }
 
@@ -10,7 +10,7 @@ export function navigationScroll() {
    if (navigation.getAttribute("data-info-bar") === "true") {
       const infoBar = document.querySelector<HTMLElement>(".g_info-bar");
       if (!infoBar) {
-         console.error("No info bar and data-info-bar is set to true");
+         console.log("No info bar and data-info-bar is set to true");
          return;
       }
       const infoClose = infoBar.querySelector<HTMLElement>(".info-bar_close");
@@ -78,11 +78,14 @@ export function navigationScroll() {
          navigation.classList.remove("is-scrolled");
       }
 
-      // If the user is in the top 3rem of the page force the navigation shown
-      const topThresholdPx = 3 * rem;
+      // If the user is in the top 10rem of the page force the navigation shown
+      const topThresholdPx = 10 * rem;
       if (currentY <= topThresholdPx) {
-         navigation.style.transform = "translateY(0%)";
-         navigation.style.opacity = "1";
+         // Force shown at top via class, not inline transform
+         navigation.classList.remove("is-moved");
+         // Clear any inline overrides to let CSS drive transitions
+         navigation.style.transform = "";
+         navigation.style.opacity = "";
          // Reset any accumulated “downward” or “upward” scroll so bounce doesn’t hide it
          downAccum = upAccum = 0;
          lastScrollY = currentY;

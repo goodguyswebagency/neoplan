@@ -7753,14 +7753,14 @@
   function navigationScroll() {
     const navigation = document.querySelector(".navigation");
     if (!navigation) {
-      console.error("No navigation");
+      console.log("No navigation");
       return;
     }
     let infoBarClosing = false;
     if (navigation.getAttribute("data-info-bar") === "true") {
       const infoBar = document.querySelector(".g_info-bar");
       if (!infoBar) {
-        console.error("No info bar and data-info-bar is set to true");
+        console.log("No info bar and data-info-bar is set to true");
         return;
       }
       const infoClose = infoBar.querySelector(".info-bar_close");
@@ -7810,10 +7810,11 @@
       } else {
         navigation.classList.remove("is-scrolled");
       }
-      const topThresholdPx = 3 * rem;
+      const topThresholdPx = 10 * rem;
       if (currentY <= topThresholdPx) {
-        navigation.style.transform = "translateY(0%)";
-        navigation.style.opacity = "1";
+        navigation.classList.remove("is-moved");
+        navigation.style.transform = "";
+        navigation.style.opacity = "";
         downAccum = upAccum = 0;
         lastScrollY = currentY;
         return;

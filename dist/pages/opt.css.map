@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/css/pages/opt.css"],
+  "sourcesContent": ["/* USP marquee */\n.opt-usp_marquee {\n   animation: uspMarquee 30s infinite linear;\n}\n\n@keyframes uspMarquee {\n   0% {\n      transform: translateX(0%);\n   }\n   100% {\n      transform: translateX(-100%);\n   }\n}\n"],
+  "mappings": ";AACA,CAAC;AACE,aAAW,WAAW,IAAI,SAAS;AACtC;AAEA,WAHc;AAIX;AACG,eAAW,WAAW;AACzB;AACA;AACG,eAAW,WAAW;AACzB;AACH;",
+  "names": []
+}

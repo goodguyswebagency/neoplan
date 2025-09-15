@@ -1,8 +1,19 @@
 import "swiper/css";
 import "../../css/pages/productPage.css";
 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Swiper from "swiper";
 import { Navigation, Thumbs } from "swiper/modules";
+
+import footerOverlap from "../animations/footerOverlap";
+import { categorySlider } from "../components/categorySlider";
+
+gsap.registerPlugin(ScrollTrigger);
+
+/******************/
+/* Product slider */
+/******************/
 
 function productSlider() {
    const sliders = document.querySelectorAll(".product_slider");
@@ -21,8 +32,13 @@ function productSlider() {
 
       const thumbsSwiper = new Swiper(swiperThumbs, {
          slidesPerView: "auto",
-         spaceBetween: rem,
+         spaceBetween: 0.375 * rem,
          watchSlidesProgress: true,
+         breakpoints: {
+            992: {
+               spaceBetween: rem,
+            },
+         },
       });
 
       new Swiper(swiperEl, {
@@ -43,6 +59,52 @@ function productSlider() {
    });
 }
 
+/****************************************/
+/* Reusable attribute-selector dropdown */
+/****************************************/
+
+function openDropdowns() {
+   const dropdowns = document.querySelectorAll<HTMLElement>(
+      "[data-dropdown-wrapper]",
+   );
+
+   dropdowns.forEach((dropdown) => {
+      const toggle = dropdown.querySelector("[data-dropdown-toggle]");
+
+      toggle?.addEventListener("click", () => {
+         dropdown.classList.toggle("is-open");
+      });
+   });
+}
+
+/****************************/
+/* Benefits arrow animation */
+/****************************/
+
+function benefitsArrowAnimation() {
+   const animationWrapper = document.querySelector(
+      ".product-benefits_grid-3_animation_wrapper",
+   );
+   const arrow = document.querySelector(
+      ".product-benefits_grid-3_animation_arrow",
+   );
+
+   if (animationWrapper && arrow) {
+      gsap.to(arrow, {
+         scrollTrigger: {
+            trigger: animationWrapper,
+            start: "top 85%",
+            end: "bottom top",
+            onEnter: () => arrow.classList.add("is-moved"),
+         },
+      });
+   }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
    productSlider();
+   openDropdowns();
+   benefitsArrowAnimation();
+   categorySlider(".slider-category_slider");
+   footerOverlap();
 });

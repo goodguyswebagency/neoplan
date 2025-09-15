@@ -14,6 +14,7 @@ export default function sliderIntoViewSmooth() {
 
       gsap.from(slides, {
          yPercent: 65,
+         opacity: 0,
          duration: 1.5,
          stagger: 0.15,
          ease: "easeMainReverse",

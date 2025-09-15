@@ -2,6 +2,7 @@ import "../../css/pages/home.css";
 
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import lottie from "lottie-web";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,6 +71,34 @@ function bentoCountGSAP() {
    });
 }
 
+/*********************/
+/* Bento lottie code */
+/*********************/
+
+function bentoLottie() {
+   const wrappers = document.querySelectorAll<HTMLElement>(".bento-lottie");
+
+   wrappers.forEach((el) => {
+      const jsonUrl = el.getAttribute("data-lottie-src");
+      if (!jsonUrl) return;
+
+      const anim = lottie.loadAnimation({
+         container: el,
+         renderer: "svg",
+         loop: false,
+         autoplay: false,
+         path: jsonUrl,
+      });
+
+      ScrollTrigger.create({
+         trigger: el,
+         start: "top 85%",
+         once: true,
+         onEnter: () => anim.play(),
+      });
+   });
+}
+
 /****************************************************/
 /* Dropdown animation for the buy and lease section */
 /****************************************************/
@@ -127,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
    sliderIntoView();
    categorySlider(".slider-category_slider");
    bentoCountGSAP();
+   bentoLottie();
    buyLeaseDropdown();
    sliderIntoViewSmooth();
    categorySlider(".services_slider");
