@@ -57,6 +57,18 @@ function productSlider() {
          },
       });
    });
+
+   // Load animation (vanilla JS)
+   document.querySelectorAll(".product_slider").forEach((el) => {
+      el.animate(
+         [{ transform: "translateY(140%)" }, { transform: "translateY(0)" }],
+         {
+            duration: 2000,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            fill: "forwards",
+         },
+      );
+   });
 }
 
 /****************************************/

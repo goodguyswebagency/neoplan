@@ -1,3 +1,8 @@
+/* Home video hover */
+.hero_video_wrapper:hover .hero_video_video-image {
+   width: 120%;
+}
+
 /* Buy lease dropdown */
 .buy-lease_dropdown_wrapper.is-open .buy-lease_dropdown_arrow {
    transform: rotateZ(180deg);
@@ -52,4 +57,13 @@
    background-position: 100% 0;
    -webkit-background-clip: text;
    -webkit-text-fill-color: transparent;
+}
+
+/* Bento hover styling */
+.bento_grid-4_wrapper:hover .bento_grid-4_image {
+   transform: scale(1.1);
+}
+
+.bento_grid-4_wrapper:hover .bento_grid-4_arrow {
+   transform: translateX(50%);
 }

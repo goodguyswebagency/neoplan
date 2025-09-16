@@ -12,6 +12,10 @@
    opacity: 0;
 }
 
+.swiper-slide.is-product-thumbs:hover .product_slide-thumbs_overlay {
+   opacity: 0;
+}
+
 /* Service dropdown */
 .product_service-dropdown_wrapper.is-open
    .product_service-dropdown_icon-line.is-rotated {
@@ -21,6 +25,10 @@
 .product_service-dropdown_wrapper.is-open .product_service-dropdown_height {
    opacity: 1;
    grid-template-rows: 1fr;
+}
+
+.product_service-dropdown_content:hover {
+   background-color: #edeceb;
 }
 
 /* Price dropdown */
@@ -40,6 +48,10 @@
    transform: rotateZ(90deg);
 }
 
+.product_dropdown_wrapper:has(.product_dropdown_toggle:hover) {
+   border-color: var(--swatch--black);
+}
+
 .product_dropdown_wrapper.is-open .product_dropdown_icon {
    transform: rotateZ(315deg);
 }
@@ -47,4 +59,9 @@
 .product_dropdown_wrapper.is-open .product_dropdown_height {
    opacity: 1;
    grid-template-rows: 1fr;
+}
+
+/* Maintenance hover */
+.product_maintenance_wrapper:hover {
+   background-color: #edeceb;
 }

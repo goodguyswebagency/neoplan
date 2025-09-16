@@ -26,6 +26,7 @@ export function categorySlider(selector: string) {
          spaceBetween: 20,
          grabCursor: true,
          simulateTouch: true,
+         speed: 800,
          navigation: {
             prevEl: buttonPrev,
             nextEl: buttonNext,

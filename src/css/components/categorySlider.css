@@ -1,3 +1,7 @@
+/* .swiper-wrapper.is-category {
+   transition-timing-function: cubic-bezier(0.625, 0.05, 0, 1);
+} */
+
 .swiper-button-prev.is-category.swiper-button-disabled {
    color: var(--swatch--black-40);
    border-color: var(--swatch--black-40);
@@ -6,4 +10,8 @@
 .swiper-button-next.is-category.swiper-button-disabled {
    color: var(--swatch--black-40);
    border-color: var(--swatch--black-40);
+}
+
+.swiper-slide.is-category:hover .slider-category_slide_image {
+   transform: scale(1.1);
 }
