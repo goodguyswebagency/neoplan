@@ -26,6 +26,17 @@ export function introCard() {
    const splitSubheading = new SplitText(subheading, { type: "lines" });
    const splitParagraph = new SplitText(paragraph, { type: "lines" });
 
+   // Remove accessibility attributes added by SplitText that cause Lighthouse warnings
+   [heading, subheading, paragraph].forEach((el) => {
+      if (!el) return;
+      // SplitText may set aria-label on the source element
+      el.removeAttribute("aria-label");
+      // And it may mark split nodes as aria-hidden; allow SRs to read the visible text
+      el.querySelectorAll('[aria-hidden="true"]').forEach((n) =>
+         n.removeAttribute("aria-hidden"),
+      );
+   });
+
    // Wrap each line in a div with overflow: hidden
    [
       ...splitHeading.lines,
