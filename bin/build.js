@@ -32,10 +32,10 @@ const LIVE_RELOAD = !PRODUCTION;
 const SERVE_PORT = 3000;
 const SERVE_ORIGIN = `http://localhost:${SERVE_PORT}`;
 
-// Ensure a clean build directory
-function cleanBuildDirectory() {
+// Prepare the build directory, optionally clearing stale artifacts
+function prepareBuildDirectory({ clean = false } = {}) {
    try {
-      if (existsSync(BUILD_DIRECTORY)) {
+      if (clean && existsSync(BUILD_DIRECTORY)) {
          rmSync(BUILD_DIRECTORY, { recursive: true, force: true });
       }
    } catch {
@@ -61,15 +61,15 @@ const context = await esbuild.context({
 
 // Build files in prod
 if (PRODUCTION) {
-   cleanBuildDirectory();
+   prepareBuildDirectory({ clean: true });
    await context.rebuild();
    context.dispose();
 }
 
 // Watch and serve files in dev
 else {
-   // Start from a clean slate and do an initial build
-   cleanBuildDirectory();
+   // Ensure the build directory exists before the initial build
+   prepareBuildDirectory();
    await context.rebuild();
    await context.watch();
    await context

@@ -3,10 +3,10 @@ import "lenis/dist/lenis.css";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 
+import { initLenis } from "./animations/lenis";
 import footerCode from "./components/footer";
-import { navigationScroll } from "./components/navigation";
+import { navigationMobile, navigationScroll } from "./components/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -49,15 +49,8 @@ function cubicBezier(p0x: number, p0y: number, p1x: number, p1y: number) {
 
 const easeCustom = cubicBezier(0.625, 0.05, 0, 1);
 
-function initLenis() {
-   const lenis = new Lenis({
-      lerp: 0.12,
-   });
-   // Prevent browser from restoring scroll position on back/forward navigation
-   history.scrollRestoration = "manual";
-   lenis.on("scroll", ScrollTrigger.update);
-   gsap.ticker.add((t) => lenis.raf(t * 1000));
-   gsap.ticker.lagSmoothing(0);
+function setupLenis() {
+   const lenis = initLenis();
 
    // Smooth scroll for same-page anchors
    document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
@@ -112,6 +105,7 @@ function initLenis() {
 
 document.addEventListener("DOMContentLoaded", () => {
    navigationScroll();
+   navigationMobile();
    footerCode();
-   initLenis();
+   setupLenis();
 });

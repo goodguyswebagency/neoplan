@@ -1,3 +1,5 @@
+import { startLenis, stopLenis } from "../animations/lenis";
+
 export function navigationScroll() {
    const navigation = document.querySelector<HTMLElement>(".navigation");
    if (!navigation) {
@@ -34,6 +36,16 @@ export function navigationScroll() {
 
          // Start the info bar close and nav slide-up together
          infoBar.classList.add("is-closed");
+         const navigationMobileEl = document.querySelector<HTMLElement>(
+            ".navigation_mobile_wrapper",
+         );
+         if (
+            navigationMobileEl &&
+            navigation.classList.contains("is-open") &&
+            window.innerWidth <= 991
+         ) {
+            navigationMobileEl.style.height = "100svh";
+         }
          requestAnimationFrame(() => {
             navigation.style.top = "0px";
          });
@@ -113,5 +125,36 @@ export function navigationScroll() {
       }
 
       lastScrollY = currentY;
+   });
+}
+
+export function navigationMobile() {
+   if (window.innerWidth > 991) return;
+
+   const navigation = document.querySelector(".navigation");
+   const navigationMobile = document.querySelector<HTMLElement>(
+      ".navigation_mobile_wrapper",
+   );
+   const infoBar = document.querySelector(".g_info-bar");
+   const button = document.querySelector(".navigation_mobile_button");
+
+   if (!navigation || !navigationMobile || !infoBar || !button) return;
+
+   button.addEventListener("click", () => {
+      const isOpen = navigation.classList.toggle("is-open");
+      const infoBarClosed = infoBar.classList.contains("is-closed");
+      const isFixed = navigation.classList.contains("is-fixed");
+
+      if (!isOpen) {
+         navigationMobile.style.height = "0svh";
+         startLenis();
+      } else {
+         stopLenis();
+         if (infoBarClosed || isFixed) {
+            navigationMobile.style.height = "100svh";
+         } else {
+            navigationMobile.style.height = "calc(100svh - 2.875rem)";
+         }
+      }
    });
 }
