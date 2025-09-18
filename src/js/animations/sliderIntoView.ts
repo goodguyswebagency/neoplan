@@ -13,7 +13,7 @@ export default function sliderIntoView() {
          yPercent: 15,
          opacity: 0,
          duration: 1.5,
-         stagger: 0.15,
+         stagger: 0.075,
          ease: "power3.out",
          scrollTrigger: {
             trigger: swiper,

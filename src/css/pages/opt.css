@@ -1,13 +1,15 @@
 /* USP marquee */
-.opt-usp_marquee {
-   animation: uspMarquee 30s infinite linear;
-}
-
-@keyframes uspMarquee {
-   0% {
-      transform: translateX(0%);
+@media screen and (max-width: 767px) {
+   .opt-usp_marquee {
+      animation: uspMarquee 30s infinite linear;
    }
-   100% {
-      transform: translateX(-100%);
+
+   @keyframes uspMarquee {
+      0% {
+         transform: translateX(0%);
+      }
+      100% {
+         transform: translateX(-100%);
+      }
    }
 }

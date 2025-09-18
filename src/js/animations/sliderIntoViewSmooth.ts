@@ -16,7 +16,7 @@ export default function sliderIntoViewSmooth() {
          yPercent: 65,
          opacity: 0,
          duration: 1.5,
-         stagger: 0.15,
+         stagger: 0.05,
          ease: "easeMainReverse",
          scrollTrigger: {
             trigger: swiper,
