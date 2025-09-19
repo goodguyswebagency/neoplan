@@ -10,11 +10,11 @@ CustomEase.create("easeMainReverse", "0.55, 0.02, 0.10, 1");
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-/*******************************/
-/* Intro card scroll into view */
-/*******************************/
+/****************************/
+/* Intro section animations */
+/****************************/
 
-export function introCard() {
+export function introAnimations() {
    const number = document.querySelector("[data-intro-number]");
    const heading = document.querySelector("[data-intro-heading]");
    const subheading = document.querySelector("[data-intro-subheading]");

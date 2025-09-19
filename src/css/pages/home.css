@@ -48,14 +48,17 @@
 
 /* Intro span animation */
 .intro_heading-span {
+   color: var(--swatch--black, #111111);
    background-image: linear-gradient(
       to right,
       var(--swatch--black) 50%,
-      var(--swatch--black-60) 50%
+      var(--swatch--black-70) 50%
    );
+   background-repeat: no-repeat;
    background-size: 200% 100%;
    background-position: 100% 0;
    -webkit-background-clip: text;
+   background-clip: text;
    -webkit-text-fill-color: transparent;
 }
 

@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import footerOverlap from "../animations/footerOverlap";
 import { heroCount, heroLoad } from "../animations/heroAnimations";
-import { introCard } from "../animations/introAnimations";
+import { introAnimations } from "../animations/introAnimations";
 import scrollFadeIn from "../animations/scrollFadeIn";
 import sliderIntoView from "../animations/sliderIntoView";
 import sliderIntoViewSmooth from "../animations/sliderIntoViewSmooth";
@@ -150,7 +150,7 @@ function servicesOpen() {
 document.addEventListener("DOMContentLoaded", () => {
    heroLoad();
    heroCount();
-   introCard();
+   introAnimations();
    videoParallax();
    scrollFadeIn();
    sliderIntoView();
