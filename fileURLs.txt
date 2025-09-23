@@ -1,0 +1,8 @@
+https://cdn.jsdelivr.net/gh/goodguyswebagency/neoplan@latest/dist/pages/home.css
+https://cdn.jsdelivr.net/gh/goodguyswebagency/neoplan@latest/dist/pages/home.js
+https://cdn.jsdelivr.net/gh/goodguyswebagency/neoplan@latest/dist/pages/opt.css
+https://cdn.jsdelivr.net/gh/goodguyswebagency/neoplan@latest/dist/pages/opt.js
+https://cdn.jsdelivr.net/gh/goodguyswebagency/neoplan@latest/dist/pages/vsl.css
+https://cdn.jsdelivr.net/gh/goodguyswebagency/neoplan@latest/dist/pages/vsl.js
+https://cdn.jsdelivr.net/gh/goodguyswebagency/neoplan@latest/dist/pages/productPage.css
+https://cdn.jsdelivr.net/gh/goodguyswebagency/neoplan@latest/dist/pages/productPage.js

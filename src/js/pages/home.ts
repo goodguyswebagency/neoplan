@@ -7,7 +7,7 @@ import lottie from "lottie-web";
 gsap.registerPlugin(ScrollTrigger);
 
 import footerOverlap from "../animations/footerOverlap";
-import { heroCount, heroLoad } from "../animations/heroAnimations";
+import { initHeroAnimations } from "../animations/heroAnimations";
 import { introAnimations } from "../animations/introAnimations";
 import scrollFadeIn from "../animations/scrollFadeIn";
 import sliderIntoView from "../animations/sliderIntoView";
@@ -148,8 +148,7 @@ function servicesOpen() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-   heroLoad();
-   heroCount();
+   initHeroAnimations();
    introAnimations();
    videoParallax();
    scrollFadeIn();
