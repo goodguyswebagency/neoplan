@@ -1,4 +1,5 @@
 {
   "explorer.sortOrder": "foldersNestsFiles",
-  "prettier.printWidth": 130
+  "prettier.printWidth": 130,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

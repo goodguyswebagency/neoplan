@@ -3,13 +3,11 @@
 } */
 
 .swiper-button-prev.is-category.swiper-button-disabled {
-   color: var(--swatch--black-40);
-   border-color: var(--swatch--black-40);
+   opacity: 0.4;
 }
 
 .swiper-button-next.is-category.swiper-button-disabled {
-   color: var(--swatch--black-40);
-   border-color: var(--swatch--black-40);
+   opacity: 0.4;
 }
 
 .swiper-slide.is-category:hover .slider-category_slide_image {

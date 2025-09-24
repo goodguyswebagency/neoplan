@@ -56,12 +56,10 @@ function pageLoad(): Promise<void> {
       });
 
       anim.addEventListener("complete", () => {
-         gsap.delayedCall(0.5, () => {
-            loadWrapper.classList.add("is-closed");
-            gsap.delayedCall(0.8, () => {
-               (loadWrapper as HTMLElement).style.display = "none";
-               resolve();
-            });
+         loadWrapper.classList.add("is-closed");
+         gsap.delayedCall(0.8, () => {
+            (loadWrapper as HTMLElement).style.display = "none";
+            resolve();
          });
       });
    });
