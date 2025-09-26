@@ -1,1 +1,67 @@
-"use strict";(()=>{function M(){let i=document.querySelectorAll("[data-time-counter]");if(!i.length)return;let u=t=>String(t).padStart(2,"0"),l=t=>{let n=t.split("/").map(c=>Number(c));if(n.length!==3)return null;let[r,o,a]=n;if(!r||!o||!a)return null;let e=new Date(a,o-1,r,0,0,0,0);return e.getFullYear()!==a||e.getMonth()!==o-1||e.getDate()!==r?null:e};i.forEach(t=>{let n=t.getAttribute("data-time-counter");if(!n)return;let r=l(n);if(!r){console.warn("[time-counter] Invalid date format, expected dd/mm/yyyy:",n);return}let o=()=>{let c=new Date,d=r.getTime()-c.getTime();if(d<=0){t.textContent="00:00:00:00",clearInterval(a);return}let s=Math.floor(d/1e3),m=Math.floor(s/86400),f=Math.floor(s%86400/3600),p=Math.floor(s%3600/60),y=s%60;t.textContent=`${m}:${u(f)}:${u(p)}:${u(y)}`};o();let a=setInterval(o,1e3),e=new MutationObserver(()=>{document.body.contains(t)||(clearInterval(a),e.disconnect())});e.observe(document.body,{childList:!0,subtree:!0})})}document.addEventListener("DOMContentLoaded",()=>{M()});})();
+"use strict";
+(() => {
+  // bin/live-reload.js
+  new EventSource(`${"http://localhost:3000"}/esbuild`).addEventListener(
+    "change",
+    () => location.reload()
+  );
+
+  // src/js/pages/opt.ts
+  function timeCounter() {
+    const elements = document.querySelectorAll(
+      "[data-time-counter]"
+    );
+    if (!elements.length) return;
+    const pad = (n) => String(n).padStart(2, "0");
+    const parseDMY = (dmy) => {
+      const parts = dmy.split("/").map((v) => Number(v));
+      if (parts.length !== 3) return null;
+      const [dd, mm, yyyy] = parts;
+      if (!dd || !mm || !yyyy) return null;
+      const date = new Date(yyyy, mm - 1, dd, 0, 0, 0, 0);
+      if (date.getFullYear() !== yyyy || date.getMonth() !== mm - 1 || date.getDate() !== dd)
+        return null;
+      return date;
+    };
+    elements.forEach((el) => {
+      const attr = el.getAttribute("data-time-counter");
+      if (!attr) return;
+      const target = parseDMY(attr);
+      if (!target) {
+        console.warn(
+          "[time-counter] Invalid date format, expected dd/mm/yyyy:",
+          attr
+        );
+        return;
+      }
+      const update = () => {
+        const now = /* @__PURE__ */ new Date();
+        const diffMs = target.getTime() - now.getTime();
+        if (diffMs <= 0) {
+          el.textContent = "00:00:00:00";
+          clearInterval(timer);
+          return;
+        }
+        const totalSeconds = Math.floor(diffMs / 1e3);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor(totalSeconds % 86400 / 3600);
+        const minutes = Math.floor(totalSeconds % 3600 / 60);
+        const seconds = totalSeconds % 60;
+        el.textContent = `${days}:${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+      };
+      update();
+      const timer = setInterval(update, 1e3);
+      const observer = new MutationObserver(() => {
+        if (!document.body.contains(el)) {
+          clearInterval(timer);
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    timeCounter();
+  });
+})();
+//# sourceMappingURL=opt.js.map

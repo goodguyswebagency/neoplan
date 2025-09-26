@@ -1,1 +1,15 @@
-@media screen and (max-width: 767px){.opt-usp_marquee{animation:uspMarquee 30s infinite linear}@keyframes uspMarquee{0%{transform:translate(0)}to{transform:translate(-100%)}}}
+/* src/css/pages/opt.css */
+@media screen and (max-width: 767px) {
+  .opt-usp_marquee {
+    animation: uspMarquee 30s infinite linear;
+  }
+  @keyframes uspMarquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+/*# sourceMappingURL=opt.css.map */

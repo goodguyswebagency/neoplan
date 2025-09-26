@@ -1,0 +1,32 @@
+/**********************/
+/* Panel tabs styling */
+/**********************/
+
+/* Panel tab buttons */
+.g_book_popup-list_tab-button_wrapper:hover .g_book_popup-list_tab-button_line {
+   opacity: 1;
+}
+.g_book_popup-list_tab-button_wrapper:hover .g_book_popup-list_tab-button_text {
+   color: var(--swatch--black);
+}
+.g_book_popup-list_tab-button_wrapper:hover
+   .g_book_popup-list_tab-button_arrow {
+   opacity: 1;
+}
+.g_book_popup-list_tab-button_wrapper.is-open
+   .g_book_popup-list_tab-button_line {
+   opacity: 1;
+}
+.g_book_popup-list_tab-button_wrapper.is-open
+   .g_book_popup-list_tab-button_text {
+   color: var(--swatch--black);
+}
+.g_book_popup-list_tab-button_wrapper.is-open
+   .g_book_popup-list_tab-button_arrow {
+   opacity: 1;
+}
+
+/* Panel tabs styling */
+.g_book_popup-open_wrapper:not(.is-open) * {
+   pointer-events: none !important;
+}

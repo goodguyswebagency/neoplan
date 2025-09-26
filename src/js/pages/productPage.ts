@@ -7,6 +7,7 @@ import Swiper from "swiper";
 import { Navigation, Thumbs } from "swiper/modules";
 
 import footerOverlap from "../animations/footerOverlap";
+import { bookPopupProduct } from "../components/bookPopup";
 import { categorySlider } from "../components/categorySlider";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -114,6 +115,7 @@ function benefitsArrowAnimation() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+   bookPopupProduct();
    productSlider();
    openDropdowns();
    benefitsArrowAnimation();

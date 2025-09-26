@@ -13,6 +13,7 @@ import scrollFadeIn from "../animations/scrollFadeIn";
 import sliderIntoView from "../animations/sliderIntoView";
 import sliderIntoViewSmooth from "../animations/sliderIntoViewSmooth";
 import videoParallax from "../animations/videoParallax";
+import { bookPopupHome } from "../components/bookPopup";
 import { categorySlider } from "../components/categorySlider";
 
 /*********************************/
@@ -149,6 +150,7 @@ function servicesOpen() {
 
 document.addEventListener("DOMContentLoaded", () => {
    initHeroAnimations();
+   bookPopupHome();
    introAnimations();
    videoParallax();
    scrollFadeIn();
