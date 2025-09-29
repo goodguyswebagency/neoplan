@@ -179,4 +179,97 @@ export function bookPopupHome() {
    }
 }
 
-export function bookPopupProduct() {}
+export function bookPopupProduct() {
+   const isMobile = window.innerWidth < 992;
+
+   const button = document.querySelector<HTMLElement>("[data-button-book]");
+   const popupMain = document.querySelector<HTMLElement>(
+      ".g_book_popup-open_wrapper",
+   );
+   const popupMainCloseButton = document.querySelector<HTMLElement>(
+      ".g_book_popup-list_panel_button.is-close",
+   );
+   const nav = document.querySelector<HTMLElement>("header");
+
+   if (!button || !popupMain) return;
+
+   const openPopupMain = () => {
+      popupMain.classList.add("is-open");
+      if (nav) nav.style.opacity = "0";
+   };
+
+   const closePopupMain = () => {
+      popupMain.classList.remove("is-open");
+      if (nav) nav.style.opacity = "";
+   };
+
+   button.addEventListener("click", () => {
+      openPopupMain();
+   });
+
+   popupMainCloseButton?.addEventListener("click", () => {
+      closePopupMain();
+   });
+
+   const tabButton1 = document.querySelector<HTMLElement>(
+      '[data-popup-tab-button="1"]',
+   );
+   const tabButton2 = document.querySelector<HTMLElement>(
+      '[data-popup-tab-button="2"]',
+   );
+   const tab1 = document.querySelector<HTMLElement>('[data-popup-tab="1"');
+   const tab2 = document.querySelector<HTMLElement>('[data-popup-tab="2"');
+
+   if (!tabButton1 || !tabButton2 || !tab1 || !tab2) return;
+
+   tabButton1.addEventListener("click", () => {
+      tab1.classList.add("is-open");
+      tabButton1.classList.add("is-open");
+      tab2.classList.remove("is-open");
+      tabButton2.classList.remove("is-open");
+   });
+
+   tabButton2.addEventListener("click", () => {
+      tab1.classList.remove("is-open");
+      tabButton1.classList.remove("is-open");
+      tab2.classList.add("is-open");
+      tabButton2.classList.add("is-open");
+   });
+
+   const cards = document.querySelectorAll<HTMLElement>(
+      ".g_book_popup-list_card_wrapper",
+   );
+   const formInput = document.querySelector<HTMLInputElement>("#contactName");
+
+   cards.forEach((card) => {
+      const nameEl = card.querySelector<HTMLElement>(
+         ".g_book_popup-list_card_heading",
+      );
+      const name = nameEl?.textContent;
+      const cardButton = card.querySelector<HTMLElement>(
+         ".g_book_popup-list_card_button",
+      );
+
+      cardButton?.addEventListener("click", () => {
+         popupMain.classList.add("is-form");
+         if (formInput && name) {
+            formInput.value = name;
+         }
+      });
+   });
+
+   const popupReturnButton = document.querySelector<HTMLElement>(
+      ".g_book_popup-list_panel_button.is-return",
+   );
+
+   popupReturnButton?.addEventListener("click", () => {
+      popupMain.classList.remove("is-form");
+   });
+
+   if (isMobile) {
+      const listWrapper = document.querySelector<HTMLElement>(
+         ".g_book_popup-list_wrapper",
+      );
+      listWrapper?.setAttribute("data-lenis-prevent", "");
+   }
+}
