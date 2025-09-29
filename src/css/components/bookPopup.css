@@ -30,3 +30,32 @@
 .g_book_popup-open_wrapper:not(.is-open) * {
    pointer-events: none !important;
 }
+
+/*********************/
+/* Form view styling */
+/*********************/
+
+.g_book_popup-open_wrapper.is-form .g_book_popup-list_panel_button.is-close {
+   opacity: 0;
+   pointer-events: none;
+}
+.g_book_popup-open_wrapper.is-form .g_book_popup-list_panel_button.is-return {
+   opacity: 1;
+   pointer-events: auto;
+}
+.g_book_popup-open_wrapper.is-form .g_book_popup-list_panel-content {
+   opacity: 0;
+   pointer-events: none;
+}
+.g_book_popup-open_wrapper.is-form .g_book_popup-list_panel-form {
+   opacity: 1;
+   pointer-events: auto;
+}
+.g_book_popup-open_wrapper.is-form .g_book_popup-list_tab_wrapper {
+   opacity: 0 !important;
+   pointer-events: none !important;
+}
+.g_book_popup-open_wrapper.is-form .g_book_popup-list_form-tab_wrapper {
+   opacity: 1;
+   pointer-events: auto;
+}

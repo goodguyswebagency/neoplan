@@ -1,5 +1,7 @@
 import "../../css/components/bookPopup.css";
 
+import { startLenis, stopLenis } from "../animations/lenis";
+
 export function bookPopupHome() {
    /********************************************************/
    /* Opening and closing logic for all popups and buttons */
@@ -12,22 +14,22 @@ export function bookPopupHome() {
    const popupCTACloseButton = document.querySelector<HTMLElement>(
       ".g_book_popup_button-close",
    );
-   const popupList = document.querySelector<HTMLElement>(
+   const popupMain = document.querySelector<HTMLElement>(
       ".g_book_popup-open_wrapper",
    );
-   const popupListOpenButton = document.querySelector<HTMLElement>(
+   const popupMainOpenButton = document.querySelector<HTMLElement>(
       ".g_book_popup_button-open",
    );
-   const popupListCloseButton = document.querySelector<HTMLElement>(
-      ".g_book_popup-list_panel-button",
+   const popupMainCloseButton = document.querySelector<HTMLElement>(
+      ".g_book_popup-list_panel_button.is-close",
    );
 
    if (
       !buttonSmall ||
       !popupCTACloseButton ||
       !popupCTA ||
-      !popupList ||
-      !popupListOpenButton
+      !popupMain ||
+      !popupMainOpenButton
    )
       return;
 
@@ -44,15 +46,17 @@ export function bookPopupHome() {
    };
 
    // Helper: open popup list wrapper and hide popup CTA
-   const openPopupList = () => {
+   const openPopupMain = () => {
       popupCTA.classList.remove("is-open");
-      popupList.classList.add("is-open");
+      popupMain.classList.add("is-open");
+      stopLenis();
    };
 
    // Helper: close popup list wrapper and open popup CTA
-   const closePopupList = () => {
+   const closePopupMain = () => {
       popupCTA.classList.add("is-open");
-      popupList.classList.remove("is-open");
+      popupMain.classList.remove("is-open");
+      startLenis();
    };
 
    // Threshold at which we auto-open the popup (150vh)
@@ -88,13 +92,17 @@ export function bookPopupHome() {
    });
 
    // Open popup list event listener
-   popupListOpenButton.addEventListener("click", () => {
-      openPopupList();
+   popupMainOpenButton.addEventListener("click", () => {
+      openPopupMain();
+      stopLenis();
+      console.log("Lenis stopped");
    });
 
    // Close popup list event listener
-   popupListCloseButton?.addEventListener("click", () => {
-      closePopupList();
+   popupMainCloseButton?.addEventListener("click", () => {
+      closePopupMain();
+      startLenis();
+      console.log("Lenis started");
    });
 
    /****************************/
@@ -126,6 +134,40 @@ export function bookPopupHome() {
       tabButton1.classList.remove("is-open");
       tab2.classList.add("is-open");
       tabButton2.classList.add("is-open");
+   });
+
+   /**************/
+   /* Form logic */
+   /**************/
+
+   const cards = document.querySelectorAll<HTMLElement>(
+      ".g_book_popup-list_card_wrapper",
+   );
+   const formInput = document.querySelector<HTMLInputElement>("#contactName");
+
+   cards.forEach((card) => {
+      const nameEl = card.querySelector<HTMLElement>(
+         ".g_book_popup-list_card_heading",
+      );
+      const name = nameEl?.textContent;
+      const button = card.querySelector<HTMLElement>(
+         ".g_book_popup-list_card_button",
+      );
+
+      button?.addEventListener("click", () => {
+         popupMain.classList.add("is-form");
+         if (formInput && name) {
+            formInput.value = name;
+         }
+      });
+   });
+
+   const popupReturnButton = document.querySelector<HTMLElement>(
+      ".g_book_popup-list_panel_button.is-return",
+   );
+
+   popupReturnButton?.addEventListener("click", () => {
+      popupMain.classList.remove("is-form");
    });
 }
 
