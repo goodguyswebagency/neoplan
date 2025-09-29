@@ -2,36 +2,37 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
-let lenisInstance: Lenis | null = null;
+let lenis: Lenis | null = null;
 
 export function initLenis() {
-   if (lenisInstance) return lenisInstance;
+   if (lenis) return lenis;
 
-   const lenis = new Lenis({
+   const createdLenis = new Lenis({
       lerp: 0.12,
    });
 
+   lenis = createdLenis;
+
    history.scrollRestoration = "manual";
 
-   lenis.on("scroll", ScrollTrigger.update);
-   gsap.ticker.add((time) => lenis.raf(time * 1000));
+   createdLenis.on("scroll", ScrollTrigger.update);
+   gsap.ticker.add((time) => createdLenis.raf(time * 1000));
    gsap.ticker.lagSmoothing(0);
 
-   lenisInstance = lenis;
-   return lenisInstance;
+   return createdLenis;
 }
 
 export function getLenis() {
-   if (!lenisInstance) {
+   if (!lenis) {
       throw new Error("Lenis has not been initialized.");
    }
-   return lenisInstance;
+   return lenis;
 }
 
 export function startLenis() {
-   lenisInstance?.start();
+   lenis?.start();
 }
 
 export function stopLenis() {
-   lenisInstance?.stop();
+   lenis?.stop();
 }

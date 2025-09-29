@@ -1,8 +1,10 @@
 import "../../css/components/bookPopup.css";
 
-import { startLenis, stopLenis } from "../animations/lenis";
+import { initLenis } from "../animations/lenis";
 
 export function bookPopupHome() {
+   const lenis = initLenis();
+
    /********************************************************/
    /* Opening and closing logic for all popups and buttons */
    /********************************************************/
@@ -49,14 +51,12 @@ export function bookPopupHome() {
    const openPopupMain = () => {
       popupCTA.classList.remove("is-open");
       popupMain.classList.add("is-open");
-      stopLenis();
    };
 
    // Helper: close popup list wrapper and open popup CTA
    const closePopupMain = () => {
       popupCTA.classList.add("is-open");
       popupMain.classList.remove("is-open");
-      startLenis();
    };
 
    // Threshold at which we auto-open the popup (150vh)
@@ -94,14 +94,14 @@ export function bookPopupHome() {
    // Open popup list event listener
    popupMainOpenButton.addEventListener("click", () => {
       openPopupMain();
-      stopLenis();
+      lenis.stop();
       console.log("Lenis stopped");
    });
 
    // Close popup list event listener
    popupMainCloseButton?.addEventListener("click", () => {
       closePopupMain();
-      startLenis();
+      lenis.start();
       console.log("Lenis started");
    });
 

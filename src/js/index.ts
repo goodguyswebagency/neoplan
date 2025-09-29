@@ -104,8 +104,8 @@ function setupLenis() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+   setupLenis();
    navigationScroll();
    navigationMobile();
    footerCode();
-   setupLenis();
 });
