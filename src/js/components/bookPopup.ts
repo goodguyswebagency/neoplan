@@ -1,9 +1,7 @@
 import "../../css/components/bookPopup.css";
 
-import { initLenis } from "../animations/lenis";
-
 export function bookPopupHome() {
-   const lenis = initLenis();
+   const isMobile = window.innerWidth < 992;
 
    /********************************************************/
    /* Opening and closing logic for all popups and buttons */
@@ -25,13 +23,15 @@ export function bookPopupHome() {
    const popupMainCloseButton = document.querySelector<HTMLElement>(
       ".g_book_popup-list_panel_button.is-close",
    );
+   const nav = document.querySelector<HTMLElement>("header");
 
    if (
       !buttonSmall ||
       !popupCTACloseButton ||
       !popupCTA ||
       !popupMain ||
-      !popupMainOpenButton
+      !popupMainOpenButton ||
+      !nav
    )
       return;
 
@@ -51,12 +51,14 @@ export function bookPopupHome() {
    const openPopupMain = () => {
       popupCTA.classList.remove("is-open");
       popupMain.classList.add("is-open");
+      nav.style.opacity = "0";
    };
 
    // Helper: close popup list wrapper and open popup CTA
    const closePopupMain = () => {
       popupCTA.classList.add("is-open");
       popupMain.classList.remove("is-open");
+      nav.style.opacity = "";
    };
 
    // Threshold at which we auto-open the popup (150vh)
@@ -94,15 +96,11 @@ export function bookPopupHome() {
    // Open popup list event listener
    popupMainOpenButton.addEventListener("click", () => {
       openPopupMain();
-      lenis.stop();
-      console.log("Lenis stopped");
    });
 
    // Close popup list event listener
    popupMainCloseButton?.addEventListener("click", () => {
       closePopupMain();
-      lenis.start();
-      console.log("Lenis started");
    });
 
    /****************************/
@@ -169,6 +167,16 @@ export function bookPopupHome() {
    popupReturnButton?.addEventListener("click", () => {
       popupMain.classList.remove("is-form");
    });
+
+   /****************/
+   /* Popup mobile */
+   /****************/
+   if (isMobile) {
+      const listWrapper = document.querySelector<HTMLElement>(
+         ".g_book_popup-list_wrapper",
+      );
+      listWrapper?.setAttribute("data-lenis-prevent", "");
+   }
 }
 
 export function bookPopupProduct() {}

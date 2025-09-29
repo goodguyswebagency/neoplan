@@ -19,6 +19,18 @@ export function initLenis() {
    gsap.ticker.add((time) => createdLenis.raf(time * 1000));
    gsap.ticker.lagSmoothing(0);
 
+   document.querySelectorAll("[data-lenis-stop]").forEach((el) => {
+      el.addEventListener("click", () => {
+         createdLenis.stop();
+      });
+   });
+
+   document.querySelectorAll("[data-lenis-start]").forEach((el) => {
+      el.addEventListener("click", () => {
+         createdLenis.start();
+      });
+   });
+
    return createdLenis;
 }
 

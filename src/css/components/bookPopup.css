@@ -59,3 +59,13 @@
    opacity: 1;
    pointer-events: auto;
 }
+
+/* Mobile */
+@media screen and (max-width: 991px) {
+   .g_book_popup-open_wrapper.is-form .g_book_popup-list_panel-content {
+      position: absolute;
+   }
+   .g_book_popup-open_wrapper.is-form .g_book_popup-list_panel-form {
+      position: relative;
+   }
+}
