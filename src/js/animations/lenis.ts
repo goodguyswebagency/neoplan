@@ -13,8 +13,6 @@ export function initLenis() {
 
    lenis = createdLenis;
 
-   history.scrollRestoration = "manual";
-
    createdLenis.on("scroll", ScrollTrigger.update);
    gsap.ticker.add((time) => createdLenis.raf(time * 1000));
    gsap.ticker.lagSmoothing(0);

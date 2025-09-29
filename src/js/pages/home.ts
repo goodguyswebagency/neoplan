@@ -148,6 +148,35 @@ function servicesOpen() {
    });
 }
 
+/*************/
+/* PDF popup */
+/*************/
+
+function homePDF() {
+   const dialog = document.querySelector<HTMLDialogElement>(
+      ".c_pdf-popup_wrapper",
+   );
+   const trigger = document.querySelector<HTMLElement>("[data-dialog-trigger]");
+   const button = document.querySelector<HTMLElement>(".c_pdf-popup_button");
+
+   if (!dialog || !trigger || !button) return;
+
+   setTimeout(() => {
+      ScrollTrigger.create({
+         trigger: trigger,
+         start: "top 100%",
+         once: true,
+         onEnter: () => {
+            dialog.showModal();
+         },
+      });
+   }, 3000);
+
+   button.addEventListener("click", () => {
+      dialog.close();
+   });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
    initHeroAnimations();
    bookPopupHome();
@@ -163,4 +192,5 @@ document.addEventListener("DOMContentLoaded", () => {
    categorySlider(".services_slider");
    servicesOpen();
    footerOverlap();
+   homePDF();
 });
