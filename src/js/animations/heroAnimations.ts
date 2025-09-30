@@ -7,7 +7,7 @@ gsap.registerPlugin(CustomEase);
 CustomEase.create("easeMain", "0.625,0.05,0,1");
 
 /*************************/
-/* Page load with Lottie   */
+/* Page load with Lottie */
 /*************************/
 function pageLoad(): Promise<void> {
    return new Promise<void>((resolve, reject) => {
@@ -100,44 +100,44 @@ function heroLoad() {
 /* Hero counting animation */
 /***************************/
 
-function countUp(
-   element: HTMLElement,
-   targetValue: number,
-   duration: number = 1000,
-) {
-   element.textContent = "0";
-   let startTime: number | null = null;
-   const startValue = 0;
+// function countUp(
+//    element: HTMLElement,
+//    targetValue: number,
+//    duration: number = 1000,
+// ) {
+//    element.textContent = "0";
+//    let startTime: number | null = null;
+//    const startValue = 0;
 
-   function updateCounter(timestamp: number) {
-      if (startTime === null) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      element.textContent = Math.floor(
-         startValue + progress * (targetValue - startValue),
-      ).toString();
+//    function updateCounter(timestamp: number) {
+//       if (startTime === null) startTime = timestamp;
+//       const progress = Math.min((timestamp - startTime) / duration, 1);
+//       element.textContent = Math.floor(
+//          startValue + progress * (targetValue - startValue),
+//       ).toString();
 
-      if (progress < 1) {
-         requestAnimationFrame(updateCounter);
-      }
-   }
+//       if (progress < 1) {
+//          requestAnimationFrame(updateCounter);
+//       }
+//    }
 
-   requestAnimationFrame(updateCounter);
-}
+//    requestAnimationFrame(updateCounter);
+// }
 
-function heroCount() {
-   const usps = document.querySelectorAll(".hero_usp_item");
+// function heroCount() {
+//    const usps = document.querySelectorAll(".hero_usp_item");
 
-   usps.forEach((usp) => {
-      const numberSpan = usp.querySelector<HTMLElement>(".hero_usp_text-span");
-      if (!numberSpan) return;
+//    usps.forEach((usp) => {
+//       const numberSpan = usp.querySelector<HTMLElement>(".hero_usp_text-span");
+//       if (!numberSpan) return;
 
-      const targetAttr = numberSpan.getAttribute("data-target");
-      const targetStr = targetAttr ?? (numberSpan.textContent || "0");
-      const numberValue = parseInt(targetStr, 10);
+//       const targetAttr = numberSpan.getAttribute("data-target");
+//       const targetStr = targetAttr ?? (numberSpan.textContent || "0");
+//       const numberValue = parseInt(targetStr, 10);
 
-      countUp(numberSpan, numberValue, 1000);
-   });
-}
+//       countUp(numberSpan, numberValue, 1000);
+//    });
+// }
 
 /*******************************/
 /* Hero combined init function */
@@ -166,11 +166,11 @@ export function initHeroAnimations() {
    pageLoad()
       .then(() => {
          heroLoad();
-         heroCount();
+         // heroCount();
       })
       .catch(() => {
          // If something goes wrong, run hero animations immediately
          heroLoad();
-         heroCount();
+         // heroCount();
       });
 }

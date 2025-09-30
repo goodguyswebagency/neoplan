@@ -8,11 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 import footerOverlap from "../animations/footerOverlap";
 import { initHeroAnimations } from "../animations/heroAnimations";
+import imageParallax from "../animations/imageParallax";
 import { introAnimations } from "../animations/introAnimations";
 import scrollFadeIn from "../animations/scrollFadeIn";
 import sliderIntoView from "../animations/sliderIntoView";
 import sliderIntoViewSmooth from "../animations/sliderIntoViewSmooth";
-import videoParallax from "../animations/videoParallax";
 import { bookPopupHome } from "../components/bookPopup";
 import { categorySlider } from "../components/categorySlider";
 
@@ -65,6 +65,11 @@ function heroVideo() {
    dialog.addEventListener("close", () => {
       stopPlayback();
       nav.style.opacity = "";
+   });
+   dialog.addEventListener("click", (ev) => {
+      if (ev.target === dialog) {
+         dialog.close();
+      }
    });
 }
 
@@ -241,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
    heroVideo();
    bookPopupHome();
    introAnimations();
-   videoParallax();
+   imageParallax();
    scrollFadeIn();
    sliderIntoView();
    categorySlider(".slider-category_slider");
