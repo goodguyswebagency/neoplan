@@ -16,6 +16,58 @@ import videoParallax from "../animations/videoParallax";
 import { bookPopupHome } from "../components/bookPopup";
 import { categorySlider } from "../components/categorySlider";
 
+/********************/
+/* Hero video popup */
+/********************/
+
+function heroVideo() {
+   const button = document.querySelector<HTMLElement>(".hero_video_wrapper");
+   const dialog = document.querySelector<HTMLDialogElement>(
+      ".hero_dialog_wrapper",
+   );
+   const closeDialogButton = document.querySelector<HTMLElement>(
+      ".hero_dialog_button",
+   );
+   const nav = document.querySelector<HTMLElement>(".navigation");
+
+   if (!button || !dialog || !closeDialogButton || !nav) return;
+
+   const video = dialog.querySelector<HTMLVideoElement>("video");
+   if (!video) return;
+
+   const startPlayback = () => {
+      video.playsInline = true as unknown as boolean;
+      video.muted = false;
+      video.load();
+      video.play().catch(() => {});
+   };
+
+   const stopPlayback = () => {
+      video.pause();
+   };
+
+   button.addEventListener("click", () => {
+      dialog.showModal();
+      startPlayback();
+      nav.style.opacity = "0";
+   });
+
+   closeDialogButton.addEventListener("click", () => {
+      dialog.close();
+      stopPlayback();
+      nav.style.opacity = "";
+   });
+
+   dialog.addEventListener("cancel", () => {
+      stopPlayback();
+      nav.style.opacity = "";
+   });
+   dialog.addEventListener("close", () => {
+      stopPlayback();
+      nav.style.opacity = "";
+   });
+}
+
 /*********************************/
 /* Helper for counting up from 0 */
 /*********************************/
@@ -186,6 +238,7 @@ function homePDF() {
 
 document.addEventListener("DOMContentLoaded", () => {
    initHeroAnimations();
+   heroVideo();
    bookPopupHome();
    introAnimations();
    videoParallax();
