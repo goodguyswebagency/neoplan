@@ -158,22 +158,29 @@ function homePDF() {
    );
    const trigger = document.querySelector<HTMLElement>("[data-dialog-trigger]");
    const button = document.querySelector<HTMLElement>(".c_pdf-popup_button");
+   const form = document.querySelector<HTMLFormElement>(".c_pdf-popup_form");
 
-   if (!dialog || !trigger || !button) return;
+   if (!dialog || !trigger || !button || !form) return;
 
-   setTimeout(() => {
-      ScrollTrigger.create({
-         trigger: trigger,
-         start: "top 100%",
-         once: true,
-         onEnter: () => {
-            dialog.showModal();
-         },
-      });
-   }, 3000);
+   if (localStorage.getItem("form-submitted") !== "true") {
+      setTimeout(() => {
+         ScrollTrigger.create({
+            trigger: trigger,
+            start: "top 100%",
+            once: true,
+            onEnter: () => {
+               dialog.showModal();
+            },
+         });
+      }, 3000);
+   }
 
    button.addEventListener("click", () => {
       dialog.close();
+   });
+
+   form.addEventListener("submit", () => {
+      localStorage.setItem("form-submitted", "true");
    });
 }
 
