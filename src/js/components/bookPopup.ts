@@ -7,58 +7,33 @@ export function bookPopupHome() {
    /* Opening and closing logic for all popups and buttons */
    /********************************************************/
 
-   const buttonSmall = document.querySelector<HTMLElement>(
-      ".g_book_popup_button",
-   );
-   const popupCTA = document.querySelector<HTMLElement>(".g_book_popup_open");
-   const popupCTACloseButton = document.querySelector<HTMLElement>(
-      ".g_book_popup_button-close",
-   );
    const popupMain = document.querySelector<HTMLElement>(
       ".g_book_popup-open_wrapper",
    );
    const popupMainOpenButton = document.querySelector<HTMLElement>(
-      ".g_book_popup_button-open",
+      "[data-open-contact-popup]",
    );
    const popupMainCloseButton = document.querySelector<HTMLElement>(
       ".g_book_popup-list_panel_button.is-close",
    );
    const nav = document.querySelector<HTMLElement>("header");
 
-   if (
-      !buttonSmall ||
-      !popupCTACloseButton ||
-      !popupCTA ||
-      !popupMain ||
-      !popupMainOpenButton ||
-      !nav
-   )
-      return;
+   if (!popupMain || !popupMainOpenButton) return;
 
-   // Helper: show the large popup CTA and hide the small button
-   const openPopupCTA = () => {
-      popupCTA.classList.add("is-open");
-      buttonSmall.classList.remove("is-open");
-   };
-
-   // Helper: hide the large popup CTA and show the small button
-   const openButtonSmall = () => {
-      popupCTA.classList.remove("is-open");
-      buttonSmall.classList.add("is-open");
-   };
-
-   // Helper: open popup list wrapper and hide popup CTA
+   // Helper: open popup list wrapper and fade the navigation to focus content
    const openPopupMain = () => {
-      popupCTA.classList.remove("is-open");
       popupMain.classList.add("is-open");
-      nav.style.opacity = "0";
+      if (nav) {
+         nav.style.opacity = "0";
+      }
    };
 
-   // Helper: close popup list wrapper and open popup CTA
+   // Helper: close popup list wrapper and restore navigation visibility
    const closePopupMain = () => {
-      popupCTA.classList.add("is-open");
       popupMain.classList.remove("is-open");
-      nav.style.opacity = "";
+      if (nav) {
+         nav.style.opacity = "";
+      }
    };
 
    // Threshold at which we auto-open the popup (150vh)
@@ -69,29 +44,18 @@ export function bookPopupHome() {
    const handleScroll = () => {
       if (hasTriggeredFromScroll) return;
 
-      // When user scrolls past 150vh from the top, open the popup
+      // When user scrolls past 150vh from the top, reveal the main popup button
       if (window.scrollY >= window.innerHeight * thresholdMultiplier) {
          hasTriggeredFromScroll = true;
          window.removeEventListener("scroll", handleScroll);
-         openPopupCTA();
+         popupMainOpenButton.classList.add("is-open");
       }
    };
 
-   // Listen for scrolling to trigger the auto-open behavior
+   // Listen for scrolling to trigger the auto-open button behavior
    window.addEventListener("scroll", handleScroll, { passive: true });
    // Run once in case the page loads already scrolled past the threshold
    handleScroll();
-
-   // Close popup CTA event listener
-   popupCTACloseButton.addEventListener("click", () => {
-      hasTriggeredFromScroll = true;
-      openButtonSmall();
-   });
-
-   // Open popup CTA event listener
-   buttonSmall.addEventListener("click", () => {
-      openPopupCTA();
-   });
 
    // Open popup list event listener
    popupMainOpenButton.addEventListener("click", () => {

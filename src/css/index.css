@@ -16,3 +16,14 @@ body {
 html {
    scrollbar-width: none;
 } /* Firefox */
+
+/* Select styling */
+select,
+.w-select {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+}
+select:invalid {
+   color: var(--swatch--black-40);
+}
