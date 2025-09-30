@@ -250,7 +250,6 @@ document.addEventListener("DOMContentLoaded", () => {
    scrollFadeIn();
    sliderIntoView();
    categorySlider(".slider-category_slider");
-   bentoCountGSAP();
    bentoLottie();
    buyLeaseDropdown();
    sliderIntoViewSmooth();
