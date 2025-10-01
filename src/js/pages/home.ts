@@ -192,16 +192,14 @@ function servicesOpen() {
       if (!tabToggle || !tabButton) return;
 
       tabToggle.addEventListener("click", () => {
-         if (!tab.classList.contains("is-open")) {
-            tab.classList.add("is-open");
-         }
+         tab.classList.toggle("is-open");
       });
 
-      tabButton.addEventListener("click", () => {
-         if (tab.classList.contains("is-open")) {
-            tab.classList.remove("is-open");
-         }
-      });
+      // tabButton.addEventListener("click", () => {
+      //    if (tab.classList.contains("is-open")) {
+      //       tab.classList.remove("is-open");
+      //    }
+      // });
    });
 }
 
