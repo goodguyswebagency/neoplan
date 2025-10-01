@@ -186,20 +186,9 @@ function servicesOpen() {
    );
 
    tabs.forEach((tab) => {
-      const tabToggle = tab.querySelector(".services_slide_tab_toggle");
-      const tabButton = tab.querySelector(".services_slide_tab_button");
-
-      if (!tabToggle || !tabButton) return;
-
-      tabToggle.addEventListener("click", () => {
+      tab.addEventListener("click", () => {
          tab.classList.toggle("is-open");
       });
-
-      // tabButton.addEventListener("click", () => {
-      //    if (tab.classList.contains("is-open")) {
-      //       tab.classList.remove("is-open");
-      //    }
-      // });
    });
 }
 
