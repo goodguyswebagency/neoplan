@@ -31,15 +31,6 @@
    pointer-events: none;
 }
 
-.services_slide_tab_wrapper.is-open .services_slide_tab_toggle-text {
-   opacity: 0;
-}
-
-.services_slide_tab_wrapper.is-open
-   .services_slide_tab_toggle-text.is-dropdown {
-   opacity: 1;
-}
-
 .services_slide_tab_wrapper.is-open .services_slide_tab_button {
    pointer-events: auto;
    transform: rotateZ(315deg);
