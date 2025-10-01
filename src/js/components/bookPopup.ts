@@ -192,8 +192,13 @@ export function bookPopupHome() {
          emailInput.value = email;
          contactName.textContent = name;
          contactCity.textContent = city;
-         contactPhone.textContent = phone;
-         contactPhone.href = `tel:${phone}`;
+         if (phone !== "no phone") {
+            contactPhone.textContent = phone;
+            contactPhone.href = `tel:${phone}`;
+            contactPhone.style.display = "";
+         } else {
+            contactPhone.style.display = "none";
+         }
          contactEmail.textContent = email;
          contactEmail.href = `mailto:${email}`;
          setImage(email);
@@ -371,8 +376,13 @@ export function bookPopupProduct() {
          emailInput.value = email;
          contactName.textContent = name;
          contactCity.textContent = city;
-         contactPhone.textContent = phone;
-         contactPhone.href = `tel:${phone}`;
+         if (phone !== "no phone") {
+            contactPhone.textContent = phone;
+            contactPhone.href = `tel:${phone}`;
+            contactPhone.style.display = "";
+         } else {
+            contactPhone.style.display = "none";
+         }
          contactEmail.textContent = email;
          contactEmail.href = `mailto:${email}`;
          setImage(email);
