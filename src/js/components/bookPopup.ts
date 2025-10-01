@@ -102,25 +102,101 @@ export function bookPopupHome() {
    /* Form logic */
    /**************/
 
+   function closeAllImages() {
+      document
+         .querySelectorAll<HTMLImageElement>("[data-book-image]")
+         .forEach((image) => {
+            image.classList.remove("is-open");
+         });
+   }
+
+   function setImage(email: string) {
+      closeAllImages();
+      const images = Array.from(
+         document.querySelectorAll<HTMLImageElement>("[data-book-image]"),
+      );
+
+      const match = images.find(
+         (image) => image.getAttribute("data-book-image") === email,
+      );
+
+      if (match) {
+         match.classList.add("is-open");
+      }
+
+      return match || null;
+   }
+
    const cards = document.querySelectorAll<HTMLElement>(
       ".g_book_popup-list_card_wrapper",
    );
-   const formInput = document.querySelector<HTMLInputElement>("#contactName");
+
+   const contactImage =
+      document.querySelectorAll<HTMLImageElement>("[data-book-image]");
+   const contactName = document.querySelector<HTMLElement>("[data-book-name]");
+   const contactCity = document.querySelector<HTMLElement>("[data-book-city]");
+   const contactPhone =
+      document.querySelector<HTMLLinkElement>("[data-book-phone");
+   const contactEmail =
+      document.querySelector<HTMLLinkElement>("[data-book-email");
+
+   // Input fields
+   const nameInput = document.querySelector<HTMLInputElement>("#contactName");
+   const phoneInput = document.querySelector<HTMLInputElement>("#contactPhone");
+   const emailInput = document.querySelector<HTMLInputElement>("#contactEmail");
+
+   if (
+      !contactName ||
+      !contactCity ||
+      !contactImage ||
+      !contactPhone ||
+      !contactEmail ||
+      !nameInput ||
+      !phoneInput ||
+      !emailInput
+   ) {
+      return;
+   }
 
    cards.forEach((card) => {
+      // Elements with the data values
       const nameEl = card.querySelector<HTMLElement>(
          ".g_book_popup-list_card_heading",
       );
-      const name = nameEl?.textContent;
-      const button = card.querySelector<HTMLElement>(
+      const cityEl = card.querySelector<HTMLElement>(
+         ".g_book_popup-list_card_subheading",
+      );
+      const phoneEl = card.querySelector<HTMLElement>("[data-phone-number]");
+      const emailEl = card.querySelector<HTMLElement>("[data-email]");
+
+      if (!nameEl || !cityEl || !phoneEl || !emailEl) {
+         return;
+      }
+
+      // Data values
+      const name = nameEl.textContent;
+      const city = cityEl.textContent;
+      const phone = phoneEl.getAttribute("data-phone-number");
+      const email = emailEl.getAttribute("data-email");
+
+      if (!name || !city || !phone || !email) return;
+
+      const cardButton = card.querySelector<HTMLElement>(
          ".g_book_popup-list_card_button",
       );
 
-      button?.addEventListener("click", () => {
+      cardButton?.addEventListener("click", () => {
          popupMain.classList.add("is-form");
-         if (formInput && name) {
-            formInput.value = name;
-         }
+         nameInput.value = name;
+         phoneInput.value = phone;
+         emailInput.value = email;
+         contactName.textContent = name;
+         contactCity.textContent = city;
+         contactPhone.textContent = phone;
+         contactPhone.href = `tel:${phone}`;
+         contactEmail.textContent = email;
+         contactEmail.href = `mailto:${email}`;
+         setImage(email);
       });
    });
 
@@ -135,6 +211,7 @@ export function bookPopupHome() {
    /****************/
    /* Popup mobile */
    /****************/
+
    if (isMobile) {
       const listWrapper = document.querySelector<HTMLElement>(
          ".g_book_popup-list_wrapper",
@@ -200,25 +277,105 @@ export function bookPopupProduct() {
       tabButton2.classList.add("is-open");
    });
 
+   /**************/
+   /* Form logic */
+   /**************/
+
+   function closeAllImages() {
+      document
+         .querySelectorAll<HTMLImageElement>("[data-book-image]")
+         .forEach((image) => {
+            image.classList.remove("is-open");
+         });
+   }
+
+   function setImage(email: string) {
+      closeAllImages();
+      const images = Array.from(
+         document.querySelectorAll<HTMLImageElement>("[data-book-image]"),
+      );
+
+      const match = images.find(
+         (image) => image.getAttribute("data-book-image") === email,
+      );
+
+      if (match) {
+         match.classList.add("is-open");
+      }
+
+      return match || null;
+   }
+
    const cards = document.querySelectorAll<HTMLElement>(
       ".g_book_popup-list_card_wrapper",
    );
-   const formInput = document.querySelector<HTMLInputElement>("#contactName");
+
+   const contactImage =
+      document.querySelectorAll<HTMLImageElement>("[data-book-image]");
+   const contactName = document.querySelector<HTMLElement>("[data-book-name]");
+   const contactCity = document.querySelector<HTMLElement>("[data-book-city]");
+   const contactPhone =
+      document.querySelector<HTMLLinkElement>("[data-book-phone");
+   const contactEmail =
+      document.querySelector<HTMLLinkElement>("[data-book-email");
+
+   // Input fields
+   const nameInput = document.querySelector<HTMLInputElement>("#contactName");
+   const phoneInput = document.querySelector<HTMLInputElement>("#contactPhone");
+   const emailInput = document.querySelector<HTMLInputElement>("#contactEmail");
+
+   if (
+      !contactName ||
+      !contactCity ||
+      !contactImage ||
+      !contactPhone ||
+      !contactEmail ||
+      !nameInput ||
+      !phoneInput ||
+      !emailInput
+   ) {
+      return;
+   }
 
    cards.forEach((card) => {
+      // Elements with the data values
       const nameEl = card.querySelector<HTMLElement>(
          ".g_book_popup-list_card_heading",
       );
-      const name = nameEl?.textContent;
+      const cityEl = card.querySelector<HTMLElement>(
+         ".g_book_popup-list_card_subheading",
+      );
+      const phoneEl = card.querySelector<HTMLElement>("[data-phone-number]");
+      const emailEl = card.querySelector<HTMLElement>("[data-email]");
+
+      if (!nameEl || !cityEl || !phoneEl || !emailEl) {
+         return;
+      }
+
+      // Data values
+      const name = nameEl.textContent;
+      const city = cityEl.textContent;
+      const phone = phoneEl.getAttribute("data-phone-number");
+      const email = emailEl.getAttribute("data-email");
+
+      if (!name || !city || !phone || !email) return;
+
       const cardButton = card.querySelector<HTMLElement>(
          ".g_book_popup-list_card_button",
       );
 
       cardButton?.addEventListener("click", () => {
          popupMain.classList.add("is-form");
-         if (formInput && name) {
-            formInput.value = name;
-         }
+         nameInput.value = name;
+         phoneInput.value = phone;
+         emailInput.value = email;
+         contactName.textContent = name;
+         contactCity.textContent = city;
+         contactPhone.textContent = phone;
+         contactPhone.href = `tel:${phone}`;
+         contactEmail.textContent = email;
+         contactEmail.href = `mailto:${email}`;
+         setImage(email);
       });
    });
 
@@ -229,6 +386,10 @@ export function bookPopupProduct() {
    popupReturnButton?.addEventListener("click", () => {
       popupMain.classList.remove("is-form");
    });
+
+   /****************/
+   /* Popup mobile */
+   /****************/
 
    if (isMobile) {
       const listWrapper = document.querySelector<HTMLElement>(
