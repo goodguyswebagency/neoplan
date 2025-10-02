@@ -157,4 +157,17 @@ export function navigationMobile() {
          }
       }
    });
+
+   // Link clicks start Lenis and close nav
+   const links = document.querySelectorAll(".navigation_nav_link");
+
+   if (links.length === 0) return;
+
+   links.forEach((link) => {
+      link.addEventListener("click", () => {
+         navigation.classList.remove("is-open");
+         navigationMobile.style.height = "0svh";
+         startLenis();
+      });
+   });
 }
