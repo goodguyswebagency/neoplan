@@ -33,6 +33,11 @@
    color: var(--swatch--black);
 }
 
+.navigation[data-wf--global-navigation--variant="404"].is-scrolled:not(.is-open)
+   .navigation_mobile_button {
+   color: var(--swatch--white);
+}
+
 /* Link hover */
 .navigation[data-wf--global-navigation--variant="transparent"]:not(.is-scrolled)
    .navigation_nav_link-hover {
