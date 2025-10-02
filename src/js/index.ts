@@ -53,54 +53,54 @@ function setupLenis() {
    const lenis = initLenis();
 
    // Smooth scroll for same-page anchors
-   document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
-      anchor.addEventListener(
-         "click",
-         (e) => {
-            const el = e.currentTarget as HTMLAnchorElement;
-            const href = el.getAttribute("href");
-            if (!href) return;
+   // document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+   //    anchor.addEventListener(
+   //       "click",
+   //       (e) => {
+   //          const el = e.currentTarget as HTMLAnchorElement;
+   //          const href = el.getAttribute("href");
+   //          if (!href) return;
 
-            const url = new URL(href, window.location.origin);
+   //          const url = new URL(href, window.location.origin);
 
-            // Only intercept if it's the current page
-            if (url.pathname === window.location.pathname && url.hash) {
-               e.preventDefault();
-               // Stop Webflow's default smooth scroll
-               e.stopImmediatePropagation?.();
-               e.stopPropagation?.();
+   //          // Only intercept if it's the current page
+   //          if (url.pathname === window.location.pathname && url.hash) {
+   //             e.preventDefault();
+   //             // Stop Webflow's default smooth scroll
+   //             e.stopImmediatePropagation?.();
+   //             e.stopPropagation?.();
 
-               const targetEl = document.querySelector(
-                  url.hash,
-               ) as HTMLElement | null;
-               const targetY = targetEl
-                  ? targetEl.getBoundingClientRect().top + window.scrollY
-                  : 0;
-               const currentY = window.scrollY;
-               const distance = Math.abs(targetY - currentY);
-               const pxPerSecond = 2000;
-               const duration = distance / pxPerSecond;
+   //             const targetEl = document.querySelector(
+   //                url.hash,
+   //             ) as HTMLElement | null;
+   //             const targetY = targetEl
+   //                ? targetEl.getBoundingClientRect().top + window.scrollY
+   //                : 0;
+   //             const currentY = window.scrollY;
+   //             const distance = Math.abs(targetY - currentY);
+   //             const pxPerSecond = 2000;
+   //             const duration = distance / pxPerSecond;
 
-               lenis.scrollTo(url.hash, {
-                  duration,
-                  easing: easeCustom,
-               });
-            }
-         },
-         { capture: true },
-      );
-   });
+   //             lenis.scrollTo(url.hash, {
+   //                duration,
+   //                easing: easeCustom,
+   //             });
+   //          }
+   //       },
+   //       { capture: true },
+   //    );
+   // });
 
-   // Handle landing on a hash URL without native jump/blink
-   if (window.location.hash) {
-      const initialHash = window.location.hash;
-      // Prevent the browser's instant jump
-      window.scrollTo(0, 0);
-      // Defer until next frame so Lenis is ready
-      requestAnimationFrame(() => {
-         lenis.scrollTo(initialHash, { immediate: true });
-      });
-   }
+   // // Handle landing on a hash URL without native jump/blink
+   // if (window.location.hash) {
+   //    const initialHash = window.location.hash;
+   //    // Prevent the browser's instant jump
+   //    window.scrollTo(0, 0);
+   //    // Defer until next frame so Lenis is ready
+   //    requestAnimationFrame(() => {
+   //       lenis.scrollTo(initialHash, { immediate: true });
+   //    });
+   // }
 }
 
 /**************************/
