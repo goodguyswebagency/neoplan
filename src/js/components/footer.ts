@@ -16,12 +16,7 @@ export default function footerCode() {
       if (!toggle) return;
 
       toggle.addEventListener("click", () => {
-         if (!dropdown.classList.contains("is-open")) {
-            closeAllDropdowns();
-            dropdown.classList.add("is-open");
-         } else {
-            closeAllDropdowns();
-         }
+         dropdown.classList.toggle("is-open");
       });
    });
 }
