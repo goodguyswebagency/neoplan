@@ -138,11 +138,14 @@ export function navigationMobile() {
    const infoBar = document.querySelector(".g_info-bar");
    const button = document.querySelector(".navigation_mobile_button");
 
-   if (!navigation || !navigationMobile || !infoBar || !button) return;
+   if (!navigation || !navigationMobile || !button) return;
 
    button.addEventListener("click", () => {
       const isOpen = navigation.classList.toggle("is-open");
-      const infoBarClosed = infoBar.classList.contains("is-closed");
+      let infoBarClosed;
+      if (infoBar) {
+         infoBarClosed = infoBar.classList.contains("is-closed");
+      }
       const isFixed = navigation.classList.contains("is-fixed");
 
       if (!isOpen) {
