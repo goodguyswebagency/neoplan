@@ -30,6 +30,7 @@
    background-color: transparent;
    -webkit-backdrop-filter: none;
    backdrop-filter: none;
+   color: var(--swatch--black);
 }
 
 /* Link hover */
