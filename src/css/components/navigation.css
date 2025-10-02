@@ -26,6 +26,12 @@
    }
 }
 
+.navigation.is-scrolled .navigation_mobile_button {
+   background-color: transparent;
+   -webkit-backdrop-filter: none;
+   backdrop-filter: none;
+}
+
 /* Link hover */
 .navigation[data-wf--global-navigation--variant="transparent"]:not(.is-scrolled)
    .navigation_nav_link-hover {
