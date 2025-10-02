@@ -26,7 +26,10 @@
    }
 }
 
-.navigation.is-scrolled:not(.is-open) .navigation_mobile_button {
+.navigation.is-scrolled:not(.is-open):not(
+      [data-wf--global-navigation--variant="404"]
+   )
+   .navigation_mobile_button {
    background-color: transparent;
    -webkit-backdrop-filter: none;
    backdrop-filter: none;
