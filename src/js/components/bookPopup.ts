@@ -22,6 +22,7 @@ export function bookPopupHome() {
 
    // Helper: open popup list wrapper and fade the navigation to focus content
    const openPopupMain = () => {
+      popupMainOpenButton.classList.remove("is-open");
       popupMain.classList.add("is-open");
       if (nav) {
          nav.style.opacity = "0";
@@ -30,6 +31,7 @@ export function bookPopupHome() {
 
    // Helper: close popup list wrapper and restore navigation visibility
    const closePopupMain = () => {
+      popupMainOpenButton.classList.add("is-open");
       popupMain.classList.remove("is-open");
       if (nav) {
          nav.style.opacity = "";
