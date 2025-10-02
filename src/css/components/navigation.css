@@ -55,3 +55,11 @@
 .navigation.is-open .navigation_nav_link {
    color: var(--swatch--white) !important;
 }
+
+.navigation.is-open .navigation_mobile_button-icon.is-hamburger {
+   opacity: 0;
+}
+
+.navigation.is-open .navigation_mobile_button-icon.is-close {
+   opacity: 1;
+}

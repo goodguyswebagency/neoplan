@@ -65,12 +65,3 @@
    background-clip: text;
    -webkit-text-fill-color: transparent;
 }
-
-/* Bento hover styling */
-.bento_grid-4_wrapper:hover .bento_grid-4_image {
-   transform: scale(1.1);
-}
-
-.bento_grid-4_wrapper:hover .bento_grid-4_arrow {
-   transform: translateX(50%);
-}

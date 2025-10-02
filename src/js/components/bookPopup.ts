@@ -37,7 +37,7 @@ export function bookPopupHome() {
    };
 
    // Threshold at which we auto-open the popup (150vh)
-   const thresholdMultiplier = 1.5;
+   const thresholdMultiplier = 1.2;
    // Ensure we trigger the auto-open only once per page view
    let hasTriggeredFromScroll = false;
 
