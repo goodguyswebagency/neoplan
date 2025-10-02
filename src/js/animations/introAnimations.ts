@@ -52,7 +52,7 @@ export function introAnimations() {
    const tl = gsap.timeline({
       scrollTrigger: {
          trigger: number,
-         start: "top 85%",
+         start: "top 95%",
          end: "bottom top",
       },
    });
