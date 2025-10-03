@@ -43,18 +43,21 @@ export function bookPopupHome() {
 
    // Threshold at which we auto-open the popup (150vh)
    const thresholdMultiplier = 1.2;
-   // Ensure we trigger the auto-open only once per page view
-   let hasTriggeredFromScroll = false;
+   const sectionCta = document.querySelector<HTMLElement>(".section_cta");
 
    const handleScroll = () => {
-      if (hasTriggeredFromScroll) return;
+      const threshold = window.innerHeight * thresholdMultiplier;
+      const beyondThreshold = window.scrollY >= threshold;
 
-      // When user scrolls past 150vh from the top, reveal the main popup button
-      if (window.scrollY >= window.innerHeight * thresholdMultiplier) {
-         hasTriggeredFromScroll = true;
-         window.removeEventListener("scroll", handleScroll);
-         popupMainOpenButton.classList.add("is-open");
+      let ctaInView = false;
+      if (sectionCta) {
+         const rect = sectionCta.getBoundingClientRect();
+         ctaInView = rect.top <= window.innerHeight && rect.bottom >= 0;
       }
+
+      // Show the floating button only after the threshold and before the CTA enters view
+      const shouldShowButton = beyondThreshold && !ctaInView;
+      popupMainOpenButton.classList.toggle("is-open", shouldShowButton);
    };
 
    // Listen for scrolling to trigger the auto-open button behavior
