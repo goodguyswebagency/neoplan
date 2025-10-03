@@ -41,9 +41,10 @@ export function bookPopupHome() {
       }
    };
 
-   // Threshold at which we auto-open the popup (150vh)
+   // Threshold at which we auto-open the popup (120vh)
    const thresholdMultiplier = 1.2;
    const sectionCta = document.querySelector<HTMLElement>(".section_cta");
+   const footer = document.querySelector<HTMLElement>(".footer");
 
    const handleScroll = () => {
       const threshold = window.innerHeight * thresholdMultiplier;
@@ -55,8 +56,15 @@ export function bookPopupHome() {
          ctaInView = rect.top <= window.innerHeight && rect.bottom >= 0;
       }
 
-      // Show the floating button only after the threshold and before the CTA enters view
-      const shouldShowButton = beyondThreshold && !ctaInView;
+      let footerInView = false;
+      if (footer) {
+         const rect = footer.getBoundingClientRect();
+         footerInView = rect.top <= window.innerHeight && rect.bottom >= 0;
+      }
+
+      // Show the floating button only after the threshold
+      // and before CTA or footer enters view
+      const shouldShowButton = beyondThreshold && !ctaInView && !footerInView;
       popupMainOpenButton.classList.toggle("is-open", shouldShowButton);
    };
 

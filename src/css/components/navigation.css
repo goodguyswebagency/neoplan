@@ -41,6 +41,19 @@
    color: var(--swatch--white);
 }
 
+/* Scroll styling mobile */
+/* @media screen and (max-width: 991px) {
+   .navigation[data-wf--global-navigation--variant="transparent"].is-scrolled {
+      background-color: transparent;
+   }
+   .navigation[data-wf--global-navigation--variant="transparent"].is-scrolled
+      .navigation_mobile_button {
+      -webkit-backdrop-filter: blur(1.25rem);
+      backdrop-filter: blur(1.25rem);
+      background: rgba(29, 29, 29, 0.4);
+   }
+} */
+
 /* Link hover */
 .navigation[data-wf--global-navigation--variant="transparent"]:not(.is-scrolled)
    .navigation_nav_link-hover {
