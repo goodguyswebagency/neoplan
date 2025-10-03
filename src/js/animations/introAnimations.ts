@@ -57,12 +57,16 @@ export function introAnimations() {
       },
    });
 
-   tl.from(number, {
-      opacity: 0,
-      scale: 0.9,
-      duration: 1,
-      ease: "power3.out",
-   })
+   tl.from(
+      number,
+      {
+         opacity: 0,
+         scale: 0.9,
+         duration: 1,
+         ease: "power3.out",
+      },
+      0,
+   )
       .to(
          headingSpans,
          {
@@ -70,7 +74,7 @@ export function introAnimations() {
             duration: 1,
             ease: "easeMain",
          },
-         "<",
+         0,
       )
       .from(
          [...splitHeading.lines, ...splitSubheading.lines],
@@ -80,7 +84,7 @@ export function introAnimations() {
             duration: 1,
             ease: "power3.out",
          },
-         "<",
+         0,
       )
       .from(
          line,
@@ -89,12 +93,16 @@ export function introAnimations() {
             duration: 0.8,
             ease: "easeMainReverse",
          },
-         ">-0.3",
+         0,
       )
-      .from([...splitParagraph.lines], {
-         yPercent: 50,
-         opacity: 0,
-         duration: 1,
-         ease: "power3.out",
-      });
+      .from(
+         [...splitParagraph.lines],
+         {
+            yPercent: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+         },
+         0,
+      );
 }
