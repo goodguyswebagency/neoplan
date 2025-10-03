@@ -240,6 +240,9 @@ export function bookPopupHome() {
 export function bookPopupProduct() {
    const isMobile = window.innerWidth < 992;
 
+   const ctaButtons = document.querySelectorAll<HTMLElement>(
+      "[data-open-book='true']",
+   );
    const button = document.querySelector<HTMLElement>("[data-button-book]");
    const popupMain = document.querySelector<HTMLElement>(
       ".g_book_popup-open_wrapper",
@@ -267,6 +270,13 @@ export function bookPopupProduct() {
 
    popupMainCloseButton?.addEventListener("click", () => {
       closePopupMain();
+   });
+
+   // Open popup on all CTAs
+   ctaButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+         openPopupMain();
+      });
    });
 
    const tabButton1 = document.querySelector<HTMLElement>(
