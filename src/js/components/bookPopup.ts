@@ -7,6 +7,9 @@ export function bookPopupHome() {
    /* Opening and closing logic for all popups and buttons */
    /********************************************************/
 
+   const ctaButtons = document.querySelectorAll<HTMLElement>(
+      "[data-open-book='true']",
+   );
    const popupMain = document.querySelector<HTMLElement>(
       ".g_book_popup-open_wrapper",
    );
@@ -67,6 +70,13 @@ export function bookPopupHome() {
    // Close popup list event listener
    popupMainCloseButton?.addEventListener("click", () => {
       closePopupMain();
+   });
+
+   // Open popup on all CTAs
+   ctaButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+         openPopupMain();
+      });
    });
 
    /****************************/
