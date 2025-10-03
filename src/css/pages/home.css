@@ -41,6 +41,15 @@
    opacity: 1;
 }
 
+.services_slide_tab_wrapper.is-open .services_slide_tab_toggle-text {
+   opacity: 0;
+}
+
+.services_slide_tab_wrapper.is-open
+   .services_slide_tab_toggle-text.is-dropdown {
+   opacity: 1;
+}
+
 /* Services card hover */
 .services_slide_tab_wrapper:not(.is-open):hover {
    background-color: var(--swatch--black-04);
