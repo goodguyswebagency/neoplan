@@ -72,13 +72,14 @@ function pageLoad(): Promise<void> {
 function heroLoad() {
    const heading = document.querySelector(".hero_heading");
    const paragraph = document.querySelector(".hero_paragraph");
+   const list = document.querySelector(".hero_list");
    const ctaWrapper = document.querySelector(".hero_cta-wrapper");
    const videoWrapper = document.querySelector(".hero_video_wrapper");
 
    const tl = gsap.timeline();
 
    // Animate main content
-   tl.to([heading, paragraph, ctaWrapper], {
+   tl.to([heading, paragraph, list, ctaWrapper], {
       y: 0,
       opacity: 1,
       duration: 1,
@@ -146,11 +147,12 @@ function heroLoad() {
 export function initHeroAnimations() {
    const heading = document.querySelector(".hero_heading");
    const paragraph = document.querySelector(".hero_paragraph");
+   const list = document.querySelector(".hero_list");
    const ctaWrapper = document.querySelector(".hero_cta-wrapper");
    const videoWrapper = document.querySelector(".hero_video_wrapper");
 
    // Prevent flash: set initial hidden state before starting loader
-   gsap.set([heading, paragraph, ctaWrapper], { opacity: 0, y: 25 });
+   gsap.set([heading, paragraph, list, ctaWrapper], { opacity: 0, y: 25 });
    gsap.set(videoWrapper, { opacity: 0, clipPath: "inset(50% 50% 50% 50%)" });
 
    // Pre-set counters: store final value and show 0 to avoid pre-flash
