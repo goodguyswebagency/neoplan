@@ -29,6 +29,7 @@ export function bookPopupHome() {
       popupMain.classList.add("is-open");
       if (nav) {
          nav.style.opacity = "0";
+         nav.style.pointerEvents = "none";
       }
    };
 
@@ -38,6 +39,7 @@ export function bookPopupHome() {
       popupMain.classList.remove("is-open");
       if (nav) {
          nav.style.opacity = "";
+         nav.style.pointerEvents = "";
       }
    };
 
@@ -268,12 +270,18 @@ export function bookPopupProduct() {
 
    const openPopupMain = () => {
       popupMain.classList.add("is-open");
-      if (nav) nav.style.opacity = "0";
+      if (nav) {
+         nav.style.opacity = "0";
+         nav.style.pointerEvents = "none";
+      }
    };
 
    const closePopupMain = () => {
       popupMain.classList.remove("is-open");
-      if (nav) nav.style.opacity = "";
+      if (nav) {
+         nav.style.opacity = "";
+         nav.style.pointerEvents = "";
+      }
    };
 
    button.addEventListener("click", () => {
