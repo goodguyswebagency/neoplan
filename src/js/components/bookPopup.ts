@@ -159,9 +159,9 @@ export function bookPopupHome() {
    const contactName = document.querySelector<HTMLElement>("[data-book-name]");
    const contactCity = document.querySelector<HTMLElement>("[data-book-city]");
    const contactPhone =
-      document.querySelector<HTMLLinkElement>("[data-book-phone");
+      document.querySelector<HTMLLinkElement>("[data-book-phone]");
    const contactEmail =
-      document.querySelector<HTMLLinkElement>("[data-book-email");
+      document.querySelector<HTMLLinkElement>("[data-book-email]");
 
    // Input fields
    const nameInput = document.querySelector<HTMLInputElement>("#contactName");
@@ -199,10 +199,11 @@ export function bookPopupHome() {
       // Data values
       const name = nameEl.textContent;
       const city = cityEl.textContent;
-      const phone = phoneEl.getAttribute("data-phone-number");
+      const phoneText = phoneEl.getAttribute("data-phone-number");
+      const phoneValue = phoneEl.getAttribute("data-phone-link");
       const email = emailEl.getAttribute("data-email");
 
-      if (!name || !city || !phone || !email) return;
+      if (!name || !city || !phoneText || !phoneValue || !email) return;
 
       const cardButton = card.querySelector<HTMLElement>(
          ".g_book_popup-list_card_button",
@@ -211,13 +212,13 @@ export function bookPopupHome() {
       cardButton?.addEventListener("click", () => {
          popupMain.classList.add("is-form");
          nameInput.value = name;
-         phoneInput.value = phone;
+         phoneInput.value = phoneValue;
          emailInput.value = email;
          contactName.textContent = name;
          contactCity.textContent = city;
-         if (phone !== "no phone") {
-            contactPhone.textContent = phone;
-            contactPhone.href = `tel:${phone}`;
+         if (phoneText !== "no phone") {
+            contactPhone.textContent = phoneText;
+            contactPhone.href = `tel:${phoneValue}`;
             contactPhone.style.display = "";
          } else {
             contactPhone.style.display = "none";
@@ -353,9 +354,9 @@ export function bookPopupProduct() {
    const contactName = document.querySelector<HTMLElement>("[data-book-name]");
    const contactCity = document.querySelector<HTMLElement>("[data-book-city]");
    const contactPhone =
-      document.querySelector<HTMLLinkElement>("[data-book-phone");
+      document.querySelector<HTMLLinkElement>("[data-book-phone]");
    const contactEmail =
-      document.querySelector<HTMLLinkElement>("[data-book-email");
+      document.querySelector<HTMLLinkElement>("[data-book-email]");
 
    // Input fields
    const nameInput = document.querySelector<HTMLInputElement>("#contactName");
@@ -393,10 +394,11 @@ export function bookPopupProduct() {
       // Data values
       const name = nameEl.textContent;
       const city = cityEl.textContent;
-      const phone = phoneEl.getAttribute("data-phone-number");
+      const phoneText = phoneEl.getAttribute("data-phone-number");
+      const phoneValue = phoneEl.getAttribute("data-phone-link");
       const email = emailEl.getAttribute("data-email");
 
-      if (!name || !city || !phone || !email) return;
+      if (!name || !city || !phoneText || !phoneValue || !email) return;
 
       const cardButton = card.querySelector<HTMLElement>(
          ".g_book_popup-list_card_button",
@@ -405,13 +407,13 @@ export function bookPopupProduct() {
       cardButton?.addEventListener("click", () => {
          popupMain.classList.add("is-form");
          nameInput.value = name;
-         phoneInput.value = phone;
+         phoneInput.value = phoneValue;
          emailInput.value = email;
          contactName.textContent = name;
          contactCity.textContent = city;
-         if (phone !== "no phone") {
-            contactPhone.textContent = phone;
-            contactPhone.href = `tel:${phone}`;
+         if (phoneText !== "no phone") {
+            contactPhone.textContent = phoneText;
+            contactPhone.href = `tel:${phoneValue}`;
             contactPhone.style.display = "";
          } else {
             contactPhone.style.display = "none";
