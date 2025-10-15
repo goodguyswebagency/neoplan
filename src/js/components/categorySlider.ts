@@ -11,6 +11,26 @@ export function categorySlider(selector: string) {
       const swiperEl = slider.querySelector<HTMLElement>(".swiper");
       if (!swiperEl) return;
 
+      const swiperNavigation =
+         slider.querySelector<HTMLElement>(".swiper-navigation");
+      const swiperWrapper =
+         slider.querySelector<HTMLElement>(".swiper-wrapper");
+      const slidesCount =
+         swiperEl.querySelectorAll<HTMLElement>(".swiper-slide").length;
+      const isMobile = window.innerWidth <= 991;
+
+      if (!isMobile && slidesCount <= 3) {
+         if (swiperNavigation && swiperWrapper) {
+            swiperNavigation.style.display = "none";
+            swiperWrapper.classList.add("is-grid");
+         }
+         return;
+      }
+
+      if (swiperNavigation && swiperWrapper) {
+         swiperNavigation.style.display = "";
+      }
+
       const buttonPrev = slider.querySelector<HTMLElement>(
          ".swiper-button-prev",
       );

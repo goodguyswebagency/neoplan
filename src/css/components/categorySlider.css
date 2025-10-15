@@ -13,3 +13,9 @@
 .swiper-slide.is-category:hover .slider-category_slide_image {
    transform: scale(1.1);
 }
+
+.swiper-wrapper.is-grid {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   gap: 1.25rem;
+}
