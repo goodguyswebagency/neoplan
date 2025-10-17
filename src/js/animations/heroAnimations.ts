@@ -79,13 +79,16 @@ function heroLoad() {
    const tl = gsap.timeline();
 
    // Animate main content
-   tl.to([heading, paragraph, list, ctaWrapper], {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out",
-   }).to(
+   tl.to(
+      [heading, paragraph, list, ctaWrapper],
+      {
+         y: 0,
+         opacity: 1,
+         duration: 1,
+         ease: "power3.out",
+      },
+      0,
+   ).to(
       videoWrapper,
       {
          clipPath: "inset(0% 0% 0% 0%)",
@@ -93,7 +96,7 @@ function heroLoad() {
          duration: 1.5,
          ease: "easeMain",
       },
-      ">-0.5",
+      0,
    );
 }
 

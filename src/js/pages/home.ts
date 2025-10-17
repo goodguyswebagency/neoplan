@@ -166,12 +166,23 @@ function buyLeaseDropdown() {
       ".buy-lease_dropdown_wrapper",
    );
 
+   function closeAllDropdowns() {
+      dropdowns.forEach((dropdown) => {
+         dropdown.classList.remove("is-open");
+      });
+   }
+
    dropdowns.forEach((dropdown) => {
       const toggle = dropdown.querySelector(".buy-lease_dropdown_toggle");
       if (!toggle) return;
 
       toggle.addEventListener("click", () => {
-         dropdown.classList.toggle("is-open");
+         if (dropdown.classList.contains("is-open")) {
+            closeAllDropdowns();
+         } else {
+            closeAllDropdowns();
+            dropdown.classList.add("is-open");
+         }
       });
    });
 }
@@ -214,6 +225,10 @@ function homePDF() {
             once: true,
             onEnter: () => {
                dialog.showModal();
+               requestAnimationFrame(() => {
+                  const el = document.activeElement as HTMLElement | null;
+                  if (el) el.blur();
+               });
             },
          });
       }, 3000);

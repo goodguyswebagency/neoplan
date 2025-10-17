@@ -7,6 +7,7 @@ import Swiper from "swiper";
 import { Navigation, Thumbs } from "swiper/modules";
 
 import footerOverlap from "../animations/footerOverlap";
+import scrollFadeIn from "../animations/scrollFadeIn";
 import { bookPopupProduct } from "../components/bookPopup";
 import { categorySlider } from "../components/categorySlider";
 
@@ -120,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
    bookPopupProduct();
    productSlider();
    openDropdowns();
+   scrollFadeIn();
    benefitsArrowAnimation();
    categorySlider(".slider-category_slider");
    footerOverlap();

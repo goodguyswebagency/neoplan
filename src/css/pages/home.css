@@ -16,6 +16,42 @@
    }
 }
 
+/* Intro span animation */
+.intro_heading-span {
+   color: var(--swatch--black, #111111);
+   background-image: linear-gradient(
+      to right,
+      var(--swatch--black) 50%,
+      var(--swatch--black-70) 50%
+   );
+   background-repeat: no-repeat;
+   background-size: 200% 100%;
+   background-position: 100% 0;
+   -webkit-background-clip: text;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+}
+
+/* Image full card hover */
+.image-full_card_wrap {
+   transition: all 0.3s ease;
+}
+.image-full_card_heading {
+   transition: all 0.3s ease;
+}
+.image-full_card_paragraph {
+   transition: all 0.3s ease;
+}
+.image-full_card_wrap:hover {
+   background-color: #ffffff;
+}
+.image-full_card_wrap:hover .image-full_card_heading {
+   color: #1d1d1d;
+}
+.image-full_card_wrap:hover .image-full_card_paragraph {
+   color: #1d1d1d;
+}
+
 /* Buy lease dropdown */
 .buy-lease_dropdown_wrapper.is-open .buy-lease_dropdown_arrow {
    transform: rotateZ(180deg);
@@ -57,20 +93,4 @@
 
 .services_slide_tab_wrapper:not(.is-open):hover .services_slide_tab_button {
    transform: rotateZ(180deg);
-}
-
-/* Intro span animation */
-.intro_heading-span {
-   color: var(--swatch--black, #111111);
-   background-image: linear-gradient(
-      to right,
-      var(--swatch--black) 50%,
-      var(--swatch--black-70) 50%
-   );
-   background-repeat: no-repeat;
-   background-size: 200% 100%;
-   background-position: 100% 0;
-   -webkit-background-clip: text;
-   background-clip: text;
-   -webkit-text-fill-color: transparent;
 }

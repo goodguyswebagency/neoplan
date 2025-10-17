@@ -1,7 +1,11 @@
-/****************/
-/* Popup button */
-/****************/
+/********************************/
+/* Panel return & close buttons */
+/********************************/
 
+.g_book_popup-list_panel_button:hover {
+   background-color: #1d1d1d;
+   color: #ffffff;
+}
 
 /**********************/
 /* Panel tabs styling */
@@ -17,6 +21,7 @@
 .g_book_popup-list_tab-button_wrapper:hover
    .g_book_popup-list_tab-button_arrow {
    opacity: 1;
+   transform: translateX(0%);
 }
 .g_book_popup-list_tab-button_wrapper.is-open
    .g_book_popup-list_tab-button_line {
@@ -29,6 +34,7 @@
 .g_book_popup-list_tab-button_wrapper.is-open
    .g_book_popup-list_tab-button_arrow {
    opacity: 1;
+   transform: translateX(0%);
 }
 
 /* Panel tabs styling */
@@ -73,4 +79,15 @@
    .g_book_popup-open_wrapper.is-form .g_book_popup-list_panel-form {
       position: relative;
    }
+}
+
+/****************/
+/* Card styling */
+/****************/
+
+.g_book_popup-list_card_wrapper:hover .g_book_popup-list_card_button {
+   background-color: #a4143f;
+}
+.g_book_popup-list_card_wrapper:hover .g_book_popup-list_card_button-arrow {
+   transform: translateX(15%);
 }

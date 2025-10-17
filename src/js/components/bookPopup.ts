@@ -1,5 +1,45 @@
 import "../../css/components/bookPopup.css";
 
+import gsap from "gsap";
+
+function animateBookPopupOpenDesktop(isMobile: boolean) {
+   if (isMobile) return;
+
+   const panel = document.querySelector<HTMLElement>(
+      ".g_book_popup-list_panel",
+   );
+   const content = document.querySelector<HTMLElement>(
+      ".g_book_popup-list_content",
+   );
+
+   if (!panel || !content) return;
+
+   gsap.killTweensOf([panel, content]);
+
+   const tl = gsap.timeline({ delay: 0.25 });
+
+   tl.fromTo(
+      panel,
+      { y: 50, opacity: 0 },
+      {
+         y: 0,
+         opacity: 1,
+         duration: 1,
+         ease: "power2.out",
+      },
+   ).fromTo(
+      content,
+      { y: 50, opacity: 0 },
+      {
+         y: 0,
+         opacity: 1,
+         duration: 1,
+         ease: "power2.out",
+      },
+      "-=0.75",
+   );
+}
+
 export function bookPopupHome() {
    const isMobile = window.innerWidth < 992;
 
@@ -31,6 +71,7 @@ export function bookPopupHome() {
          nav.style.opacity = "0";
          nav.style.pointerEvents = "none";
       }
+      animateBookPopupOpenDesktop(isMobile);
    };
 
    // Helper: close popup list wrapper and restore navigation visibility
@@ -207,11 +248,7 @@ export function bookPopupHome() {
 
       if (!name || !city || !phoneText || !phoneValue || !email) return;
 
-      const cardButton = card.querySelector<HTMLElement>(
-         ".g_book_popup-list_card_button",
-      );
-
-      cardButton?.addEventListener("click", () => {
+      card.addEventListener("click", () => {
          popupMain.classList.add("is-form");
          nameInput.value = name;
          phoneInput.value = phoneValue;
@@ -274,6 +311,7 @@ export function bookPopupProduct() {
          nav.style.opacity = "0";
          nav.style.pointerEvents = "none";
       }
+      animateBookPopupOpenDesktop(isMobile);
    };
 
    const closePopupMain = () => {
@@ -408,11 +446,7 @@ export function bookPopupProduct() {
 
       if (!name || !city || !phoneText || !phoneValue || !email) return;
 
-      const cardButton = card.querySelector<HTMLElement>(
-         ".g_book_popup-list_card_button",
-      );
-
-      cardButton?.addEventListener("click", () => {
+      card.addEventListener("click", () => {
          popupMain.classList.add("is-form");
          nameInput.value = name;
          phoneInput.value = phoneValue;
