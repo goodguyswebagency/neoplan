@@ -243,12 +243,12 @@ export function bookPopupHome() {
    /* Popup mobile */
    /****************/
 
-   if (isMobile) {
-      const listWrapper = document.querySelector<HTMLElement>(
-         ".g_book_popup-list_wrapper",
-      );
-      listWrapper?.setAttribute("data-lenis-prevent", "");
-   }
+   // if (isMobile) {
+   //    const listWrapper = document.querySelector<HTMLElement>(
+   //       ".g_book_popup-list_wrapper",
+   //    );
+   //    listWrapper?.setAttribute("data-lenis-prevent", "");
+   // }
 }
 
 export function bookPopupProduct() {
@@ -444,10 +444,10 @@ export function bookPopupProduct() {
    /* Popup mobile */
    /****************/
 
-   if (isMobile) {
-      const listWrapper = document.querySelector<HTMLElement>(
-         ".g_book_popup-list_wrapper",
-      );
-      listWrapper?.setAttribute("data-lenis-prevent", "");
-   }
+   // if (isMobile) {
+   //    const listWrapper = document.querySelector<HTMLElement>(
+   //       ".g_book_popup-list_wrapper",
+   //    );
+   //    listWrapper?.setAttribute("data-lenis-prevent", "");
+   // }
 }
