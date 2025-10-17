@@ -9,6 +9,7 @@ export function initLenis() {
 
    const createdLenis = new Lenis({
       lerp: 0.12,
+      syncTouch: true,
    });
 
    lenis = createdLenis;
