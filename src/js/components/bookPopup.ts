@@ -59,7 +59,9 @@ export function bookPopupHome() {
    const popupMainCloseButton = document.querySelector<HTMLElement>(
       ".g_book_popup-list_panel_button.is-close",
    );
-   const nav = document.querySelector<HTMLElement>("header");
+   const nav = document.querySelector<HTMLElement>(
+      ".navigation_absolute-wrapper",
+   );
 
    if (!popupMain || !popupMainOpenButton) return;
 
@@ -301,7 +303,9 @@ export function bookPopupProduct() {
    const popupMainCloseButton = document.querySelector<HTMLElement>(
       ".g_book_popup-list_panel_button.is-close",
    );
-   const nav = document.querySelector<HTMLElement>("header");
+   const nav = document.querySelector<HTMLElement>(
+      ".navigation_absolute-wrapper",
+   );
 
    if (!button || !popupMain) return;
 
